@@ -1,0 +1,94 @@
+angular.module('StaffApp', ['ngCookies'])
+
+.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}])
+
+
+  .controller('StaffController', function($scope, $http, $interval, $cookies) {
+
+    //Check if logged in
+    if(1 || $cookies.get("akbarTokenManagementAppAdminToken")){
+      $scope.isLoggedIn = true;
+    }
+    else{
+      $scope.isLoggedIn = false;
+      window.location = "login.html";
+    }
+
+    //Logout function
+    $scope.logoutNow = function(){
+      if($cookies.get("akbarTokenManagementAppAdminToken")){
+        $cookies.remove("akbarTokenManagementAppAdminToken");
+        window.location = "login.html";
+      }
+    }
+
+      $scope.outletCode = localStorage.getItem("branch");
+      var temp_branch = localStorage.getItem("branchCode");
+
+      $scope.initAgents = function(){
+	      $http.get("https://accelerateengine.app/client-apis/akbar/fetchroles.php").then(function(response) {
+	          $scope.delivery_agent = response.data.results;
+	      });
+      }
+      
+      $scope.initAgents();
+	
+      $scope.errorflag =  false;
+      $scope.agentcode = '';
+      $scope.agentname = '';
+      $scope.addAgent = function(){
+        var data = {};
+        data.token = $cookies.get("akbarTokenManagementAppAdminToken");
+        data.code = $scope.agentcode ;
+        data.name = $scope.agentname ;
+        if(data.code == "" || data.name == "" || !isValidPhone(data.code)){
+          $scope.errorflag = true;
+        }
+        else{
+          $scope.errorflag = false;
+          $http({
+            method  : 'POST',
+            url     : 'https://accelerateengine.app/client-apis/akbar/addagent.php',
+            data    : data,
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+           })
+           .then(function(response) {
+              $scope.initAgents();
+            });
+        }
+      }
+      
+      $scope.askForDelete = function(con){
+      	$scope.askContent = con;
+      	$('#confirmationModal').modal('show');
+      }
+
+      function isValidPhone(phoneno){
+        var pattern = /^[6789]\d{9}$/;
+        if(pattern.test(phoneno)){
+          return true;
+        }
+        return false;
+      }
+
+      $scope.removeAgent = function(code, role){
+        var data = {};
+        data.token = $cookies.get("akbarTokenManagementAppAdminToken");
+        data.code = code;
+        data.role = role;
+        $http({
+          method  : 'POST',
+          url     : 'https://accelerateengine.app/client-apis/akbar/removeagent.php',
+          data    : data,
+          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+         })
+         .then(function(response) {
+          $('#confirmationModal').modal('hide');
+          $scope.initAgents();
+         });
+
+      }
+
+});
