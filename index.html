@@ -95,11 +95,11 @@
 
 
                           <!-- Default Results -->
-                          <div class="tab-content" ng-if="!isSearched && !isViewingOrder">
+                          <div class="tab-content" ng-if="!isSearched">
                              <div class="tab-pane active" id="tab-projects">
                                 <div class="panel panel-default">
                                    <div class="panel-heading">
-                                      <h2>{{filterTitle}}</h2>
+                                      <h2 style="width: 100%">{{filterTitle}}<button class="btn btn-success-alt btn-sm" style="float: right" ng-click="openNewToken()">Add New</button></h2>
                                    </div>
                                    <div class="panel-body">     
                                      <div id="vegaPanelBodyLoader"></div>                               
@@ -175,11 +175,11 @@
 
 
                           <!-- Search Results -->
-                          <div class="tab-content" ng-if="isSearched" ng-if="!isViewingOrder">
+                          <div class="tab-content" ng-if="isSearched">
                              <div class="tab-pane active" id="tab-projects">
                                 <div class="panel panel-default">
                                    <div class="panel-heading">
-                                      <h2>{{filterTitle}}</h2>
+                                      <h2 style="width: 100%">{{filterTitle}}<button class="btn btn-success-alt btn-sm" style="float: right" ng-click="openNewToken()">Add New</button></h2>
                                    </div>
                                    <div class="panel-body">
                                      <div class="row" ng-if="!isOrdersFound" style="padding-top: 30px">
@@ -228,6 +228,250 @@
                              </div>
 
                           </div>
+
+
+
+
+
+               <!-- CANCEL Confirmation Modal -->
+               <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">   
+                        <div class="modal-body" style="padding-bottom: 40px">                   
+                           <p style="font-size: 16px; color: #95a5a6; float: left">Do you really want to delete this token for <strong style="color: #e74c3c">{{cancelShowName}}</strong>?</p>
+                        </div>                                                               
+                        <div class="modal-footer">                                                    
+                           <button type="button" class="btn btn-default" style="float: left" data-dismiss="modal">No</button>
+                           <button type="button" class="btn btn-danger" ng-click="confirmCancel(cancelItemCode)">Yes, Cancel</button>
+                        </div>
+                     </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+               </div><!-- /.modal -->    
+               
+               
+               <!-- NEW Token Modal -->
+               <div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" style="min-width: 900px !important;">
+                     <div class="modal-content">
+                        <div class="modal-body">
+                           <h2 style="text-align: center;">New Token</h2>
+                           <h3 class="smallHeading">Customer Details</h3>
+                           <div class="row">
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Customer Name</label>
+                                 <input type="text" ng-model="newTokenContent.name" class="form-control input-lg" placeholder="Customer Name">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">DOB</label>                                 
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="newTokenContent.customerDOB" id="customer_dob" class="form-control">
+                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                 </div>
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Mobile Number</label>
+                                 <input type="number" ng-model="newTokenContent.mobile" class="form-control input-lg" placeholder="Mobile Number">
+                              </div>
+                           </div>
+
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Passport Number</label>
+                                 <input type="text" ng-model="newTokenContent.passportNumber" class="form-control input-lg" placeholder="Passport Number">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Passport Expiry</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="newTokenContent.passportExpiry" id="passport_expiry" class="form-control">
+                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <h3 class="smallHeading">Travel Details</h3>
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">From</label>
+                                 <input type="text" ng-model="newTokenContent.travelFrom" class="form-control input-lg" placeholder="From">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">To</label>
+                                 <input type="text" ng-model="newTokenContent.travelTo" class="form-control input-lg" placeholder="To">
+                              </div>     
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Travel Date</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="newTokenContent.travelDate" id="travel_date" class="form-control">
+                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                 </div>
+                              </div>                         
+                           </div> 
+
+                           <h3 class="smallHeading">Flight Details</h3>
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Flight</label>
+                                 <input type="text" ng-model="newTokenContent.flightName" class="form-control input-lg" placeholder="Flight">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Departure Time</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="newTokenContent.timeDeparture" class="form-control" id="time_departure">
+                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
+                                 </div>
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Arrival Time</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="newTokenContent.timeArrival" class="form-control" id="time_arrival">
+                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
+                                 </div>
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Status</label>
+                                 <select class="form-control" id="flight_status">                     
+                                    <option value="OK">OK</option>
+                                 </select>
+                              </div>
+                           </div> 
+
+                           <h3 class="smallHeading" style="color: #c7d34d">Other Details</h3>
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Customer Address</label>
+                                 <textarea ng-model="newTokenContent.address" class="form-control input-lg" placeholder="Customer Address"></textarea>
+                              </div>
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Remarks</label>
+                                 <textarea ng-model="newTokenContent.comments" class="form-control input-lg" placeholder="Any Remarks"></textarea>
+                              </div>
+                              <p ng-show="newTokenError != ''" style="margin: 20px 0px 0px 15px; color: #e74c3c">{{newTokenError}}</p>    
+                           </div>
+                                
+                           
+                        </div>                                                                                       
+                        <div class="modal-footer">                      
+                           <button type="button" style="float: left" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                           <button type="button" class="btn btn-success" ng-click="saveNewToken()">Generate Token</button>
+                        </div>
+                     </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+               </div><!-- /.modal -->    
+               
+               
+
+
+               <!-- Edit Token Modal -->
+               <div class="modal fade" id="tokenEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" style="min-width: 900px !important;">
+                     <div class="modal-content">
+                        <div class="modal-body">
+                           <h2 style="text-align: center;">Editing Token</h2>
+                           <h3 class="smallHeading">Customer Details</h3>
+                           <div class="row">
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Customer Name</label>
+                                 <input type="text" ng-model="editTokenContent.name" class="form-control input-lg" placeholder="Customer Name">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">DOB</label>                                 
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="editTokenContent.customerDOB" id="customer_dob" class="form-control">
+                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                 </div>
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Mobile Number</label>
+                                 <input type="number" ng-model="editTokenContent.mobile" class="form-control input-lg" placeholder="Mobile Number">
+                              </div>
+                           </div>
+
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Passport Number</label>
+                                 <input type="text" ng-model="editTokenContent.passportNumber" class="form-control input-lg" placeholder="Passport Number">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Passport Expiry</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="editTokenContent.passportExpiry" id="passport_expiry" class="form-control">
+                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <h3 class="smallHeading">Travel Details</h3>
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">From</label>
+                                 <input type="text" ng-model="editTokenContent.travelFrom" class="form-control input-lg" placeholder="From">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">To</label>
+                                 <input type="text" ng-model="editTokenContent.travelTo" class="form-control input-lg" placeholder="To">
+                              </div>     
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Travel Date</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="editTokenContent.travelDate" id="travel_date" class="form-control">
+                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                 </div>
+                              </div>                         
+                           </div> 
+
+                           <h3 class="smallHeading">Flight Details</h3>
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Flight</label>
+                                 <input type="text" ng-model="editTokenContent.flightName" class="form-control input-lg" placeholder="Flight">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Departure Time</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="editTokenContent.timeDeparture" class="form-control" id="time_departure">
+                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
+                                 </div>
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Arrival Time</label>
+                                 <div class="input-group date">
+                                    <input type="text" ng-model="editTokenContent.timeArrival" class="form-control" id="time_arrival">
+                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
+                                 </div>
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">Status</label>
+                                 <select class="form-control" id="flight_status">                     
+                                    <option value="OK">OK</option>
+                                 </select>
+                              </div>
+                           </div> 
+
+                           <h3 class="smallHeading" style="color: #c7d34d">Other Details</h3>
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Customer Address</label>
+                                 <textarea ng-model="editTokenContent.address" class="form-control input-lg" placeholder="Customer Address"></textarea>
+                              </div>
+                              <div class="col-sm-6">
+                                 <label class="myReservationLabel">Remarks</label>
+                                 <textarea ng-model="editTokenContent.comments" class="form-control input-lg" placeholder="Any Remarks"></textarea>
+                              </div>
+                              <p ng-show="newTokenError != ''" style="margin: 20px 0px 0px 15px; color: #e74c3c">{{newTokenError}}</p>    
+                           </div>
+                                
+                           
+                        </div>                                                                                       
+                        <div class="modal-footer">                      
+                           <button type="button" style="float: left" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                           <button type="button" class="btn btn-success" ng-click="saveEditToken()">Modify Token</button>
+                        </div>
+                     </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+               </div><!-- /.modal -->    
+               
+            
+
 
 
                         </div>
