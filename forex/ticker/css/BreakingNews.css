@@ -1,0 +1,9 @@
+
+.BreakingNewsController{width:100%; overflow:hidden; background: none !important; height:auto;}
+.BreakingNewsController .bn-title{display:inline-block; float:left; padding:20px 20px; background:none !important; color:none !important;}
+.BreakingNewsController ul{padding:0; margin:0; display:block; list-style:none;}
+.BreakingNewsController ul li{list-style:none; padding:20px 20px; display:none; text-align: left; font-weight: bold; color: #f2d149;}
+.BreakingNewsController ul li .fa {padding:0 15px;}
+.BreakingNewsController ul li a{list-style:none;text-decoration:none; color:#ffff00; display:inline-block; overflow:hidden; padding:0;}
+
+.easing a, .easing span{transition:.25s linear; -moz-transition:.25s linear; -webkit-transition:.25s linear;}

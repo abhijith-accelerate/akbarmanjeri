@@ -1,0 +1,400 @@
+body{
+	background-color: #48996b;
+    /* background-image: url(../images/pattern.png); */
+    background-repeat: repeat;
+}
+
+
+@-webkit-keyframes flipInX {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+@keyframes flipInX {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+.animate__flipInX {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-animation-name: flipInX;
+  animation-name: flipInX;
+    animation-duration: 1s;
+}
+
+
+
+@-webkit-keyframes flipOutX {
+  from {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+
+  30% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+  }
+}
+@keyframes flipOutX {
+  from {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+
+  30% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+  }
+}
+.animate__flipOutX {
+  -webkit-animation-duration: calc(1s * 0.75);
+  animation-duration: calc(1s * 0.75);
+  -webkit-animation-duration: calc(var(--animate-duration) * 0.75);
+  animation-duration: calc(var(--animate-duration) * 0.75);
+  -webkit-animation-name: flipOutX;
+  animation-name: flipOutX;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+    animation-duration: 1s;
+}
+
+
+
+
+
+@-webkit-keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+.animate__flash {
+  -webkit-animation-name: flash;
+  animation-name: flash;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+
+.table-striped>tbody>tr:nth-of-type(odd){
+	background-color: #27ae60;
+}
+
+.table-striped>tbody>tr:nth-of-type(even){
+	background-color: #27c369;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    padding: 18px 0;
+    font-size: 3em;
+    vertical-align: middle;
+    border: none;
+}
+
+.rate-text{
+	color: #673ab6;
+	font-weight: bold;
+	cursor: pointer;
+    text-align: right;
+    letter-spacing: 0.05em;
+    padding-right: 20px !important;
+}
+
+.header-row{
+    background: #1b7c45;
+/*    border-top: 4px solid #8a2c1f;
+    border-bottom: 2px solid #8a2c1f;*/
+    color: #FFF;
+}
+
+.head-title{
+    text-align: center;
+    font-size: 2em;
+    color: #FFF;
+    margin: 15px 0 10px 0;
+}
+
+.header-row>th{
+	font-weight: 400 !important;
+	text-transform: uppercase;
+	font-size: 1.8em !important;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.bold{
+        font-weight: bold !important;
+}
+
+@-webkit-keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.flash {
+  animation: flash 1.5s linear infinite;
+}
+
+
+.akbar-header{
+    margin: 5px 0 0 0;
+    text-align: center;
+    display: inline-block;
+    font-size: 42px;
+    color: #FFF;
+    font-weight: bold;
+    font-family: serif;
+}
+
+.country-text{
+	text-transform: uppercase;
+    font-size: 1.8em;
+    color: #FFF;
+    text-align: left;
+    text-shadow: 1px 1px 2px black;
+    padding-left: 10px !important;
+    font-weight: bold;
+}
+
+.country-code{
+	text-transform: uppercase;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fc1765;
+    text-align: center;
+    text-shadow: 1px 1px 2px black;
+}
+
+.licence{
+    text-align: center;
+}
+
+.date-time-strip{
+    background: #145931;
+    color: #FFF;
+    margin: 0;
+    padding: 8px;
+    font-size: 1.8em;
+    font-weight: 300;
+    text-align: center;
+}
+
+.time-stamp{
+    float: right;
+    margin-right: 15px;
+}
+
+.date-stamp{
+    float: left;
+    margin-left: 15px;
+}
+
+.header-title{
+    font-size: 2em;
+    color: #fff7f6;
+    font-weight: 300;
+    text-align: center;
+    display: inline-block;
+    margin: 5px 0;    
+}
+
+.flag{
+    height: 60px;
+    width: 100px;
+    margin-left: 5px;
+}
+
+.bottom-text{
+    margin: 0 0 40px 0;
+    font-size: 1.5em;
+    text-align: center;
+    color: #f8e8e7;
+    font-weight: 300;
+}
+
+.changePriceButton{
+    border-radius: 0;
+    border: none;
+    width: 100%;
+    height: 60px;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    outline: none !important;
+}
+
+.changePriceInput{
+	border: none;
+    border-bottom: 2px solid #444;
+    width: 100%;
+    font-size: 3em;
+    outline: none !important;
+}
+
+
+#infobar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    
+    background-color: #c0392b; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 10000; /* Add a z-index if needed */
+    right: 30px; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+
+#infobar.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+
+.unavailable{
+	font-size: 0.5em;
+	font-weight: 300;
+	color: gray;
+	font-style: italic;
+}
+
+.fa-inr{
+	font-size: 65%;
+	font-weight: 400;
+	margin-right: 0.1em;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Akbar Forex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+	  <link rel="stylesheet" type="text/css" href="ticker/css/BreakingNews.css"/>
+	  <script src="ticker/js/jQuery.js"></script>
+	  <script src="ticker/js/BreakingNews.js"></script>
+
+</head>
+
+<body onload="renderCountries()">
+
+	<div class="container" style="padding: 0; margin-left: 2%; width: 96%;">
+		<!-- Logo + Header -->
+		<div class="row">
+			<center><img src="images/logo_black.png" style="width: 75%; margin: 10px 0"></center>
+			<h1 class="date-time-strip"><tag class="date-stamp" id="globalDateDisplay">....</tag><tag class="licence">FFMC License No. FE/FM 1055/1994</tag><tag class="time-stamp" id="globalTimeDisplay">00:00:00 AM</tag></h1>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12" style="padding: 0">
+				<table class="table table-striped" id="renderTableContent"></table>
+			</div>
+			<div class="col-sm-12">
+					<div class="BreakingNewsController easing" id="breakingnews">
+						<div class="bn-title"></div>
+							<ul>
+			 					<li><i class="fa fa-arrow-right"></i> Rates are subject to change without notice </li> 
+			 					<li><i class="fa fa-arrow-right"></i> Coins are not accepted </li>
+			 					<li><i class="fa fa-arrow-right"></i> Exchange Fee, GST as applicable </li>
+			 					<li><i class="fa fa-arrow-right"></i> Other currency rates are available on request </li>
+							</ul>
+					</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div id="infobar"></div>
+
+	
+
+	<!-- Modal -->
+	<div id="changePriceModal" class="modal">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" onclick="hideModal()">&times;</button>
+	        <h4 class="modal-title" style="margin: 0; font-weight: 400; color: #444; font-size: 1.5em" id="changePriceText">Change Price</h4>
+	      </div>
+	      <div class="modal-body">
+	        <input id="changePriceValue" class="changePriceInput" type="text">
+	      </div>
+	      <div class="modal-footer" style="padding: 0; border: none;" id="changePriceConfirm">
+	        
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+
+
+
+    <!-- News JavaScript
+    ================================================== -->
+
+	<script>
+	$("#breakingnews").BreakingNews({
+
+		background		:"#ffffff",
+		title			:"",
+		titlecolor		:"#f1c40f",
+		titlebgcolor		:"#f1c40f",
+		linkcolor		:"#f1c40f",
+		linkhovercolor		:"#f1c40f",
+		fonttextsize		:30,
+		isbold			:false,
+		width			:"100%",
+		timer			:2000,
+		autoplay		:true,
+		effect			:"fade",
+
+	});
+	</script>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
