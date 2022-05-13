@@ -95,7 +95,7 @@ angular.module('SettingsApp', ['ngCookies'])
       		
      		$http({
 	        method  : 'POST',
-	        url     : 'https://accelerateengine.app/client-apis/akbar/saveadmininfo.php',
+	        url     : 'https://accelerateengine.app/client-apis/akbar/updateadmin.php',
 	        data    : mydata,
 	        headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 	       })
@@ -139,125 +139,6 @@ angular.module('SettingsApp', ['ngCookies'])
 	         
      }
      
-     $scope.getPercentage = function(val){
-     	return Math.round(val*100);
-     }
-    
-     $scope.getOutletSettings();     
-     
-     
-     $scope.setPayment = function(option){
-         	
-	     	var admin_data = {};
-	        admin_data.token = $cookies.get("akbarTokenManagementAppAdminToken");
-	        admin_data.status = option;
-	        admin_data.type = 'PAYMENT';
-	        $http({
-	          method  : 'POST',
-	          url     : 'https://accelerateengine.app/client-apis/akbar/changesettingsadmin.php',
-	          data    : admin_data,
-	          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-	         })
-	         .then(function(response) {
-			if(!response.data.status){
-				alert('Error: '+response.data.error);
-			}
-			else{
-				$scope.outletSettings.payment = response.data.action;			     			     				     				
-			}
-	         });		
-     }
-     
-     $scope.setReservation = function(option){
-         	
-	     	var admin_data = {};
-	        admin_data.token = $cookies.get("akbarTokenManagementAppAdminToken");
-	        admin_data.status = option;
-	        admin_data.type = 'RESERVATION';
-	        $http({
-	          method  : 'POST',
-	          url     : 'https://accelerateengine.app/client-apis/akbar/changesettingsadmin.php',
-	          data    : admin_data,
-	          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-	         })
-	         .then(function(response) {
-			if(!response.data.status){
-				alert('Error: '+response.data.error);
-			}
-			else{
-				$scope.outletSettings.reservation = response.data.action;			     			     				     				
-			}
-	         });		
-     }
-     
-     $scope.setReward = function(option){
-         	
-	     	var admin_data = {};
-	        admin_data.token = $cookies.get("akbarTokenManagementAppAdminToken");
-	        admin_data.status = option;
-	        admin_data.type = 'REWARD';
-	        $http({
-	          method  : 'POST',
-	          url     : 'https://accelerateengine.app/client-apis/akbar/changesettingsadmin.php',
-	          data    : admin_data,
-	          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-	         })
-	         .then(function(response) {
-			if(!response.data.status){
-				alert('Error: '+response.data.error);
-			}
-			else{
-				$scope.outletSettings.reward = response.data.action;			     			     				     				
-			}
-	         });		
-     }
-     
-     
-              
-
-        //Refresh Badge Counts
-        var admin_data = {};
-        admin_data.token = $cookies.get("akbarTokenManagementAppAdminToken");
-        $http({
-          method  : 'POST',
-          url     : 'https://accelerateengine.app/client-apis/akbar/fetchbadgecounts.php',
-          data    : admin_data,
-          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-         })
-         .then(function(response) {
-         	if(response.data.status){
-              		$scope.reservations_length = response.data.reservationsCount;
-              		$scope.pending_orders_length = response.data.ordersCount;
-              		$scope.helprequests_length = response.data.helpCount;
-              		$scope.smart_orders_length = response.data.smartOrdersCount;
-              	}
-              	else{
-              		$scope.reservations_length = 0;
-              		$scope.pending_orders_length = 0;
-              		$scope.helprequests_length = 0;
-              	}
-         });
-
-        $scope.Timer = $interval(function () {
-          $http({
-            method  : 'POST',
-            url     : 'https://accelerateengine.app/client-apis/akbar/fetchbadgecounts.php',
-            data    : admin_data,
-            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-           })
-           .then(function(response) {
-                if(response.data.status){
-              		$scope.reservations_length = response.data.reservationsCount;
-              		$scope.pending_orders_length = response.data.ordersCount;
-              		$scope.helprequests_length = response.data.helpCount;
-              		$scope.smart_orders_length = response.data.smartOrdersCount;
-              	}
-              	else{
-              		$scope.reservations_length = 0;
-              		$scope.pending_orders_length = 0;
-              		$scope.helprequests_length = 0;
-              	}
-           });
-        }, 20000);
+     $scope.getOutletSettings();    
         
   })

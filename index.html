@@ -108,52 +108,36 @@
                                      </div>
                                       <div class="table-responsive" ng-if="isOrdersFound">                                      	 
                                          <table class="table m-n">
-                                           <col width="2%">
-                                           <col width="10%">
-                                           <col width="12%">
-                                           <col width="11%">
-                                           <col width="12%">
-                                           <col width="26%">
-                                           <col width="7%">
-                                           <col width="7%">
-                                           <col width="7%">
+                                           <col width="5%">
+                                           <col width="25%">
+                                           <col width="15%">
+                                           <col width="15%">
+                                           <col width="20%">
+                                           <col width="20%">
                                             <thead>
                                               <tr>
-                                                 <th>#</th>
-                                                 <th>Order No.</th>
+                                                 <th>Token</th>
                                                  <th>Customer</th>
-                                                 <th>Type</th>
+                                                 <th>Travelling</th>
                                                  <th>Date</th>
-                                                 <th>Items</th>
-                                                 <th>Value</th>
-                                                 <th>Mode</th>
-                                                 <th>Status</th>
+                                                 <th>Staff</th>
+                                                 <th></th>
                                               </tr>
                                             </thead>
                                             <tbody>
-                                              <tr ng-repeat="order in completed_orders track by $index">
-                                                 <td scope="row">{{$index + 1}}</td>
-                                                 <td ng-click="displayOrder(order)">
-                                                 	<a href="#" style="font-weight: bold;">{{order.orderID}}</a><br>
-                                                 	<tag ng-if="order.feedback.rating == 5" style="color: #2ecc71"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </tag> <tag ng-if="order.feedback.rating == 4" style="color: #cddc39"> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </tag> <tag ng-if="order.feedback.rating == 3" style="color: #cddc39"> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </tag> <tag ng-if="order.feedback.rating == 2" style="color: #cddc39"> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </tag> <tag ng-if="order.feedback.rating == 1" style="color: #e74c3c"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i> </tag>                                                 
-                                                 </td>
-                                                 <td>{{order.userID}}<br><name style="font-size: 12px">{{order.userName}}</name></td>                                             
+                                              <tr ng-repeat="token in generatedTokens track by $index">
+                                                 <td>{{token.id}}</td>
+                                                 <td>{{token.customer_name}}<br><name style="font-size: 12px">{{token.customer_mobile}}</name></td>
+                                                 <td>{{token.travel_from}} to {{token.travel_to}}</td>
+                                                 <td>{{token.travel_date}}</td>
                                                  <td>
-                                                   <tag ng-if="!order.isTakeaway" style="padding: 2px 4px; color: #7f8c8d; border: 1px solid #7f8c8d">Delivery</tag>
-                                                   <tag ng-if="order.isTakeaway" style="padding: 2px 4px; color: #9b59b6; border: 1px solid #9b59b6">Take Away</tag>
-                                                 </td>
-                                                 <td>{{order.date}}</td>
-                                                 <td><span ng-repeat="item in order.cart.items" style="font-size: 12px">{{item.itemName}} ({{item.qty}}). </span></td>
-                                                 <td><i class="fa fa-inr"></i> {{order.cart.cartTotal+order.cart.cartExtra}}</td>
-                                                 <td>
-                                                   <tag ng-if="!order.isPrepaid" style="padding: 2px 4px; color: #FFF; background: #27ae60">Cash</tag>
-                                                   <tag ng-if="order.isPrepaid" style="padding: 2px 4px; color: #FFF; background: #7f8c8d">Prepaid</tag>
+                                                   {{token.staff_name}}
+                                                   <i style="display: block">{{token.remarks}}</i>
                                                  </td>
                                                  <td>
-                                                   <tag style="color: #e67e22" ng-if="order.status == 0">Pending</tag>
-                                                   <tag style="color: #3498db" ng-if="order.status == 1">Confirmed</tag>
-                                                   <tag style="color: #16a085" ng-if="order.status == 2">Dispatched</tag>
-                                                   <tag style="color: #e74c3c" ng-if="order.status == 5">Cancelled</tag>
+                                                    <button ng-click="editToken(token)">Edit</button>
+                                                    <button ng-click="printToken(token.id)">Print</button>
+
                                                  </td>
                                               </tr>
                                             </tbody>
@@ -204,7 +188,7 @@
                                                </tr>
                                             </thead>
                                             <tbody>
-                                               <tr ng-repeat="order in completed_orders track by $index">
+                                               <tr ng-repeat="order in generatedTokens track by $index">
                                                   <td scope="row">{{$index + 1}}</td>
                                                   <td>{{order.orderID}}</td>
                                                   <td>{{order.isTakeaway}}</td>
@@ -259,30 +243,30 @@
                            <div class="row">
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Customer Name</label>
-                                 <input type="text" ng-model="newTokenContent.name" class="form-control input-lg" placeholder="Customer Name">
+                                 <input type="text" ng-model="newTokenContent.customer_name" class="form-control input-lg" placeholder="Customer Name">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">DOB</label>                                 
                                  <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.customerDOB" id="customer_dob" class="form-control">
+                                    <input type="text" ng-model="newTokenContent.customer_dob" id="customer_dob" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Mobile Number</label>
-                                 <input type="number" ng-model="newTokenContent.mobile" class="form-control input-lg" placeholder="Mobile Number">
+                                 <input type="number" ng-model="newTokenContent.customer_mobile" class="form-control input-lg" placeholder="Mobile Number">
                               </div>
                            </div>
 
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Passport Number</label>
-                                 <input type="text" ng-model="newTokenContent.passportNumber" class="form-control input-lg" placeholder="Passport Number">
+                                 <input type="text" ng-model="newTokenContent.passport_number" class="form-control input-lg" placeholder="Passport Number">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Passport Expiry</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.passportExpiry" id="passport_expiry" class="form-control">
+                                    <input type="text" ng-model="newTokenContent.passport_expiry" id="passport_expiry" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>
@@ -292,16 +276,16 @@
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">From</label>
-                                 <input type="text" ng-model="newTokenContent.travelFrom" class="form-control input-lg" placeholder="From">
+                                 <input type="text" ng-model="newTokenContent.travel_from" class="form-control input-lg" placeholder="From">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">To</label>
-                                 <input type="text" ng-model="newTokenContent.travelTo" class="form-control input-lg" placeholder="To">
+                                 <input type="text" ng-model="newTokenContent.travel_to" class="form-control input-lg" placeholder="To">
                               </div>     
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Travel Date</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.travelDate" id="travel_date" class="form-control">
+                                    <input type="text" ng-model="newTokenContent.travel_date" id="travel_date" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>                         
@@ -311,19 +295,19 @@
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Flight</label>
-                                 <input type="text" ng-model="newTokenContent.flightName" class="form-control input-lg" placeholder="Flight">
+                                 <input type="text" ng-model="newTokenContent.flight_name" class="form-control input-lg" placeholder="Flight">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Departure Time</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.timeDeparture" class="form-control" id="time_departure">
+                                    <input type="text" ng-model="newTokenContent.flight_departure" class="form-control" id="time_departure">
                                     <span class="input-group-addon"><i class="ti ti-time"></i></span>
                                  </div>
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Arrival Time</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.timeArrival" class="form-control" id="time_arrival">
+                                    <input type="text" ng-model="newTokenContent.flight_arrival" class="form-control" id="time_arrival">
                                     <span class="input-group-addon"><i class="ti ti-time"></i></span>
                                  </div>
                               </div>
@@ -339,11 +323,11 @@
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Customer Address</label>
-                                 <textarea ng-model="newTokenContent.address" class="form-control input-lg" placeholder="Customer Address"></textarea>
+                                 <textarea ng-model="newTokenContent.customer_address" class="form-control input-lg" placeholder="Customer Address"></textarea>
                               </div>
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Remarks</label>
-                                 <textarea ng-model="newTokenContent.comments" class="form-control input-lg" placeholder="Any Remarks"></textarea>
+                                 <textarea ng-model="newTokenContent.remarks" class="form-control input-lg" placeholder="Any Remarks"></textarea>
                               </div>
                               <p ng-show="newTokenError != ''" style="margin: 20px 0px 0px 15px; color: #e74c3c">{{newTokenError}}</p>    
                            </div>
@@ -366,35 +350,35 @@
                   <div class="modal-dialog" style="min-width: 900px !important;">
                      <div class="modal-content">
                         <div class="modal-body">
-                           <h2 style="text-align: center;">Editing Token</h2>
+                           <h2 style="text-align: center;">Editing Token - <b>{{editTokenContent.id}}</b></h2>
                            <h3 class="smallHeading">Customer Details</h3>
                            <div class="row">
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Customer Name</label>
-                                 <input type="text" ng-model="editTokenContent.name" class="form-control input-lg" placeholder="Customer Name">
+                                 <input type="text" ng-model="editTokenContent.customer_name" class="form-control input-lg" placeholder="Customer Name">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">DOB</label>                                 
                                  <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.customerDOB" id="customer_dob" class="form-control">
+                                    <input type="text" ng-model="editTokenContent.customer_dob" id="customer_dob" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Mobile Number</label>
-                                 <input type="number" ng-model="editTokenContent.mobile" class="form-control input-lg" placeholder="Mobile Number">
+                                 <input type="number" ng-model="editTokenContent.customer_mobile" class="form-control input-lg" placeholder="Mobile Number">
                               </div>
                            </div>
 
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Passport Number</label>
-                                 <input type="text" ng-model="editTokenContent.passportNumber" class="form-control input-lg" placeholder="Passport Number">
+                                 <input type="text" ng-model="editTokenContent.passport_number" class="form-control input-lg" placeholder="Passport Number">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Passport Expiry</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.passportExpiry" id="passport_expiry" class="form-control">
+                                    <input type="text" ng-model="editTokenContent.passport_expiry" id="passport_expiry" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>
@@ -404,16 +388,16 @@
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">From</label>
-                                 <input type="text" ng-model="editTokenContent.travelFrom" class="form-control input-lg" placeholder="From">
+                                 <input type="text" ng-model="editTokenContent.travel_from" class="form-control input-lg" placeholder="From">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">To</label>
-                                 <input type="text" ng-model="editTokenContent.travelTo" class="form-control input-lg" placeholder="To">
+                                 <input type="text" ng-model="editTokenContent.travel_to" class="form-control input-lg" placeholder="To">
                               </div>     
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Travel Date</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.travelDate" id="travel_date" class="form-control">
+                                    <input type="text" ng-model="editTokenContent.travel_date" id="travel_date" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>                         
@@ -423,19 +407,19 @@
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Flight</label>
-                                 <input type="text" ng-model="editTokenContent.flightName" class="form-control input-lg" placeholder="Flight">
+                                 <input type="text" ng-model="editTokenContent.flight_name" class="form-control input-lg" placeholder="Flight">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Departure Time</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.timeDeparture" class="form-control" id="time_departure">
+                                    <input type="text" ng-model="editTokenContent.flight_departure" class="form-control" id="time_departure">
                                     <span class="input-group-addon"><i class="ti ti-time"></i></span>
                                  </div>
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Arrival Time</label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.timeArrival" class="form-control" id="time_arrival">
+                                    <input type="text" ng-model="editTokenContent.flight_arrival" class="form-control" id="time_arrival">
                                     <span class="input-group-addon"><i class="ti ti-time"></i></span>
                                  </div>
                               </div>
@@ -451,13 +435,13 @@
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Customer Address</label>
-                                 <textarea ng-model="editTokenContent.address" class="form-control input-lg" placeholder="Customer Address"></textarea>
+                                 <textarea ng-model="editTokenContent.customer_address" class="form-control input-lg" placeholder="Customer Address"></textarea>
                               </div>
                               <div class="col-sm-6">
                                  <label class="myReservationLabel">Remarks</label>
-                                 <textarea ng-model="editTokenContent.comments" class="form-control input-lg" placeholder="Any Remarks"></textarea>
+                                 <textarea ng-model="editTokenContent.remarks" class="form-control input-lg" placeholder="Any Remarks"></textarea>
                               </div>
-                              <p ng-show="newTokenError != ''" style="margin: 20px 0px 0px 15px; color: #e74c3c">{{newTokenError}}</p>    
+                              <p ng-show="editTokenError != ''" style="margin: 20px 0px 0px 15px; color: #e74c3c">{{editTokenError}}</p>    
                            </div>
                                 
                            

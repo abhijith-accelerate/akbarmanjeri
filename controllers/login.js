@@ -32,7 +32,7 @@ angular.module('AdminLoginApp', ['ngCookies'])
                 expires: now
             });
 
-            window.location = "index.html";
+           // window.location = "index.html";
           }else{
             $scope.isLoginError = true;
             $scope.warnMsg = response.data.error;

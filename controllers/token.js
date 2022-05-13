@@ -51,10 +51,10 @@ angular.module('TokenApp', ['ngCookies'])
             var yyyy = today.getFullYear();
             if(dd<10){ dd='0'+dd;}
             if(mm<10){ mm='0'+mm;}
-            var today = dd+'-'+mm+'-'+yyyy;
+            var today = yyyy+'-'+mm+'-'+dd;
 
             var data = {};
-            data.token = $cookies.get("akbarTokenManagementAppAdminToken");
+            data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA=="
             data.status = 2;
             data.key = today;
             
@@ -71,7 +71,7 @@ angular.module('TokenApp', ['ngCookies'])
                if(response.data.status){
                  $scope.isMoreLeft = false; //Showing all tokens anyways.
                  $scope.isOrdersFound = true;
-                 $scope.completed_orders = response.data.response;
+                 $scope.generatedTokens = response.data.response;
                }
                else{
                  $scope.isOrdersFound = false;
@@ -80,11 +80,13 @@ angular.module('TokenApp', ['ngCookies'])
               });
       }
 
+      $scope.initTokens();
+
       $scope.searchByDate = function(){    
 	    $scope.searchID = "";
 	    setTimeout(function(){
 		    $('#mySearchBox').datetimepicker({  
-			    	format: "dd-mm-yyyy",
+			    	format: "yyyy-mm-dd",
 			    	weekStart: 1,
 		        	todayBtn:  1,
 				autoclose: 1,
@@ -114,7 +116,7 @@ angular.module('TokenApp', ['ngCookies'])
 
 
         var data = {};
-        data.token = $cookies.get("akbarTokenManagementAppAdminToken");
+        data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA=="
         data.key = $scope.searchID;
         data.id = 0;
         $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
@@ -128,10 +130,10 @@ angular.module('TokenApp', ['ngCookies'])
            $('#vegaPanelBodyLoader').hide(); $("body").css("cursor", "default");
            if(response.data.status){
              $scope.isOrdersFound = true;
-             $scope.completed_orders = response.data.response;
+             $scope.generatedTokens = response.data.response;
              $scope.filterTitle = response.data.result;
 
-             if($scope.completed_orders.length%5 == 0){
+             if($scope.generatedTokens.length%5 == 0){
                   $scope.isMoreLeft = true;
              }else{
                   $scope.isMoreLeft = false;
@@ -149,7 +151,7 @@ angular.module('TokenApp', ['ngCookies'])
       $scope.loadMore = function(){
         $scope.limiter = $scope.limiter + 10;
         var data = {};
-        data.token = $cookies.get("akbarTokenManagementAppAdminToken");
+        data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA=="
         data.key = $scope.searchID;
         data.id = $scope.limiter;
 
@@ -162,10 +164,10 @@ angular.module('TokenApp', ['ngCookies'])
          .then(function(response) {
            if(response.data.status){
              $scope.isOrdersFound = true;
-             $scope.completed_orders = $scope.completed_orders.concat(response.data.response);
+             $scope.generatedTokens = $scope.generatedTokens.concat(response.data.response);
              $scope.filterTitle = response.data.result;
 
-             if($scope.completed_orders.length%5 == 0){
+             if($scope.generatedTokens.length%5 == 0){
                   $scope.isMoreLeft = true;
              }else{
                   $scope.isMoreLeft = false;
@@ -177,35 +179,10 @@ angular.module('TokenApp', ['ngCookies'])
           });
       }
 
-      //To display token details
-      $scope.displayOrder = function(order){
-        $scope.displayOrderID = order.orderID;
-        $scope.displayOrderContent = order;
-        $scope.user_contact = order.address;
-        $scope.displayOrderType = order.isTakeaway;
-
-        $scope.isViewingOrder = true;
-      }
-
-      $scope.cancelDisplay = function(){
-        $scope.isViewingOrder = false;
-      }
-
-
-
-
-
-
 
      //Add new token
      $scope.nullNewToken = function(){
       $scope.newTokenContent = {};
-      $scope.newTokenContent.mobile = "";
-      $scope.newTokenContent.email = "";
-      $scope.newTokenContent.name = "";
-      $scope.newTokenContent.date = "";
-      $scope.newTokenContent.time = "";
-      $scope.newTokenContent.comments = "";     
      }
      $scope.nullNewToken();
      
@@ -218,56 +195,56 @@ angular.module('TokenApp', ['ngCookies'])
 
 
 
+     //Edit Token
+     $scope.editTokenContent = {};
+    $scope.editToken = function(content){
+      $scope.editTokenContent = content;
+      $('#tokenEditModal').modal('show');
+     }
+
+
+
+     //Print Token
+     $scope.printToken = function(id) {
+       window.open("https://accelerateengine.app/client-apis/akbar/tokenpdf.php?id=" + id, "_blank");
+     }
+
+
 
       
   $scope.saveNewToken = function(){
-  
-    $scope.newTokenContent.time = document.getElementById("new_time").value;
-    $scope.newTokenContent.date = document.getElementById("new_date").value;
-    $scope.newTokenContent.mode = document.getElementById("my_mode").value;
-    $scope.newTokenContent.isBirthday = document.getElementById("check_birthday").checked ? 1 : 0;
-    $scope.newTokenContent.isAnniversary = document.getElementById("check_anniversary").checked? 1: 0;
-    
-    console.log($scope.newTokenContent);
     
     $scope.newTokenError = "";
     
-    if($scope.newTokenContent.name == "" || !(/^[a-zA-Z ]+$/.test($scope.newTokenContent.name))){
-      $scope.newTokenError = "Invalid Name";
+    if($scope.newTokenContent.customer_name == "" || !(/^[a-zA-Z ]+$/.test($scope.newTokenContent.customer_name))){
+      $scope.newTokenError = "Invalid Customer Name";
     }
-    else if($scope.newTokenContent.mobile == "" || !(/^[789]\d{9}$/.test($scope.newTokenContent.mobile))){
+    else if($scope.newTokenContent.customer_mobile == "" || !(/^[789]\d{9}$/.test($scope.newTokenContent.customer_mobile))){
       $scope.newTokenError = "Invalid Mobile Number";
     }
-    else if($scope.newTokenContent.count == "" || $scope.newTokenContent.count == 0){
-      $scope.newTokenError = "Invalid Person Count";
-    }
-    else if($scope.newTokenContent.date == "" || $scope.newTokenContent.time == ""){
-      $scope.newTokenError = "Add Date and Time";
-    }
-    else if($scope.newTokenContent.mode == ""){
-      $scope.newTokenError = "Select Reservation Mode";
-    }
     else{
-      $scope.newTokenError = "";
+
+          $scope.newTokenError = "";
       
-      var data = {};
-          data.details = $scope.newTokenContent;
-            data.token = $cookies.get("acceleronLunaAdminToken");
-            $http({
+          var data = $scope.newTokenContent;
+          data.flight_status = "OK";
+          data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA==";
+          
+          $http({
               method  : 'POST',
-              url     : 'https://accelerateengine.app/client-apis/akbar/generatetoken.php',
+              url     : 'https://accelerateengine.app/client-apis/akbar/newtoken.php',
               data    : data,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-             })
-             .then(function(response) {
-              $('#tokenModal').modal('hide');
-              if(response.data.status){    
-                $scope.initTokens();
-              }
-              else{
-                alert(response.data.error);
-              }
-             });  
+           })
+           .then(function(response) {
+            $('#tokenModal').modal('hide');
+            if(response.data.status){    
+              $scope.initTokens();
+            }
+            else{
+              alert(response.data.error);
+            }
+           });  
     }
   
   }
