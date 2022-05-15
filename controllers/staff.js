@@ -36,7 +36,7 @@ angular.module('StaffApp', ['ngCookies'])
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })
            .then(function(data) {
-              $scope.staffList = data.response;
+              $scope.staffList = data.data.response;
             }); 
       }
       
