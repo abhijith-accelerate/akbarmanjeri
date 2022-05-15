@@ -26,9 +26,18 @@ angular.module('StaffApp', ['ngCookies'])
 
 
       $scope.initAgents = function(){
-	      $http.get("https://www.accelerateengine.app/client-apis/akbar/fetchagents.php").then(function(response) {
-	          $scope.staffList = response.data.results;
-	      });
+          var data = {};
+          data.token = $cookies.get("akbarTokenManagementAppAdminToken");
+
+          $http({
+            method  : 'POST',
+            url     : 'https://www.accelerateengine.app/client-apis/akbar/fetchagents.php',
+            data    : data,
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+           })
+           .then(function(data) {
+              $scope.staffList = data.response;
+            }); 
       }
       
       $scope.initAgents();
