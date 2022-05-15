@@ -39,7 +39,7 @@ angular.module('StaffApp', ['ngCookies'])
               $scope.staffList = data.data.response;
 
               if(!response.data.status){
-                alert(response.data.error);
+                alert(data.data.error);
               }
 
             }); 

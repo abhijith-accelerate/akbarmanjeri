@@ -31,7 +31,7 @@
            </span>
            </a>
            </span>
-           <a class="navbar-brand" href="index.html" style="width: 125px"></a>
+           <a class="navbar-brand" href="index.html" style="width: 40px"></a>
            <h1 style="font-size: 18px; font-weight: bold; text-transform: uppercase">Akbar Manjeri</h1>
         </div>
         <!-- logo-area -->
@@ -137,66 +137,9 @@
                                                  <td>
                                                     <button ng-click="editToken(token)">Edit</button>
                                                     <button ng-click="printToken(token.id)">Print</button>
-
+                                                    <button ng-click="confirmCancel(token.id, token.customer_name)">Delete</button>
                                                  </td>
                                               </tr>
-                                            </tbody>
-                                         </table>
-                                         <center>
-                                           <br>
-                                           <button class="btn btn-lg" ng-if="isMoreLeft" style="background: transparent; border: 1px solid" ng-click="loadMore()">Load More</button>
-                                         </center>
-                                      </div>
-                                      <!-- /.table-responsive -->
-
-                                   </div>
-                                   <!-- /.panel-body -->
-                                </div>
-                             </div>
-
-                          </div>
-
-
-
-                          <!-- Search Results -->
-                          <div class="tab-content" ng-if="isSearched">
-                             <div class="tab-pane active" id="tab-projects">
-                                <div class="panel panel-default">
-                                   <div class="panel-heading">
-                                      <h2 style="width: 100%">{{filterTitle}}<button class="btn btn-success-alt btn-sm" style="float: right" ng-click="openNewToken()">Add New</button></h2>
-                                   </div>
-                                   <div class="panel-body">
-                                     <div class="row" ng-if="!isOrdersFound" style="padding-top: 30px">
-                                       <p ng-if="isSearched" style="font-size:21px; text-align: center; color: #7f8c8d">No orders found.</p>
-                                     </div>
-                                      <div class="table-responsive" ng-if="isOrdersFound">
-                                         <table class="table m-n">
-                                           <col width="5%">
-                                           <col width="15%">
-                                           <col width="20%">
-                                           <col width="48%">
-                                           <col width="12%">
-                                            <thead>
-                                               <tr>
-                                                  <th>#</th>
-                                                  <th>Order No.</th>
-                                                  <th>Type</th>
-                                                  <th>Date</th>
-                                                  <th>Items</th>
-                                                  <th>Value</th>
-                                                  <th>Status</th>
-                                               </tr>
-                                            </thead>
-                                            <tbody>
-                                               <tr ng-repeat="order in generatedTokens track by $index">
-                                                  <td scope="row">{{$index + 1}}</td>
-                                                  <td>{{order.orderID}}</td>
-                                                  <td>{{order.isTakeaway}}</td>
-                                                  <td>{{order.date}}</td>
-                                                  <td><span ng-repeat="item in order.cart.items">{{item.itemName}} ({{item.qty}}). </span></td>
-                                                  <td><i class="fa fa-inr"></i> {{order.cart.cartTotal}}</td>
-                                                  <td>{{order.status}}</td>
-                                               </tr>
                                             </tbody>
                                          </table>
                                          <center>
@@ -222,11 +165,11 @@
                   <div class="modal-dialog">
                      <div class="modal-content">   
                         <div class="modal-body" style="padding-bottom: 40px">                   
-                           <p style="font-size: 16px; color: #95a5a6; float: left">Do you really want to delete this token for <strong style="color: #e74c3c">{{cancelShowName}}</strong>?</p>
+                           <p style="font-size: 16px; color: #95a5a6; float: left">Do you really want to delete this token for <strong style="color: #e74c3c">{{cancelContent.cancelShowName}}</strong>?</p>
                         </div>                                                               
                         <div class="modal-footer">                                                    
                            <button type="button" class="btn btn-default" style="float: left" data-dismiss="modal">No</button>
-                           <button type="button" class="btn btn-danger" ng-click="confirmCancel(cancelItemCode)">Yes, Cancel</button>
+                           <button type="button" class="btn btn-danger" ng-click="confirmCancel(cancelContent.cancelItemCode)">Yes, Cancel</button>
                         </div>
                      </div><!-- /.modal-content -->
                   </div><!-- /.modal-dialog -->

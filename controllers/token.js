@@ -191,6 +191,14 @@ angular.module('TokenApp', ['ngCookies'])
      }
 
 
+     $scope.cancelContent = {};
+     $scope.confirmCancel = function(code, name) {
+        $scope.cancelContent.code = code;
+        $scope.cancelContent.cancelShowName = name;
+        $('#cancelModal').modal('show');
+     }
+
+
 
 
      //Edit Token
