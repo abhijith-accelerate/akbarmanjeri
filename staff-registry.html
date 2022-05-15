@@ -94,7 +94,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="agent in delivery_agent track by $index">
+							<tr ng-repeat="agent in staffList track by $index">
 								<td>{{$index + 1}}</td>
 								<td>{{agent.name}}</td>
 								<td>{{agent.code}}</td>
@@ -154,7 +154,7 @@
 								<div class="modal-body">
 									<p style="color: #e74c3c; font-weight: 400; font-size: 18px">Are you sure want to remove {{askContent.name}}?</p>		
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-danger" ng-click="removeAgent(askContent.code, askContent.role)" style="float: right">Remove</button>							
+									<button type="button" class="btn btn-danger" ng-click="removeAgent(askContent.code)" style="float: right">Remove</button>							
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->

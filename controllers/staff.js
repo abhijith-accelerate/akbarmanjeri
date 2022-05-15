@@ -24,12 +24,10 @@ angular.module('StaffApp', ['ngCookies'])
       }
     }
 
-      $scope.outletCode = localStorage.getItem("branch");
-      var temp_branch = localStorage.getItem("branchCode");
 
       $scope.initAgents = function(){
-	      $http.get("https://accelerateengine.app/client-apis/akbar/fetchroles.php").then(function(response) {
-	          $scope.delivery_agent = response.data.results;
+	      $http.get("https://accelerateengine.app/client-apis/akbar/fetchagents.php").then(function(response) {
+	          $scope.staffList = response.data.results;
 	      });
       }
       
@@ -73,11 +71,10 @@ angular.module('StaffApp', ['ngCookies'])
         return false;
       }
 
-      $scope.removeAgent = function(code, role){
+      $scope.removeAgent = function(code){
         var data = {};
         data.token = $cookies.get("akbarTokenManagementAppAdminToken");
         data.code = code;
-        data.role = role;
         $http({
           method  : 'POST',
           url     : 'https://accelerateengine.app/client-apis/akbar/removeagent.php',

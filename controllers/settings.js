@@ -54,12 +54,7 @@ angular.module('SettingsApp', ['ngCookies'])
             }
         });
      
-     //Local server settings
-     $scope.localServerIP = localStorage.getItem("localServerIP") && localStorage.getItem("localServerIP") != "" ? localStorage.getItem("localServerIP") : "127.0.0.1";
-     $scope.updateLocalServerIP = function(){
-       localStorage.setItem("localServerIP", $scope.localServerIP);
-     }
-     
+
      $scope.pass = {};
      $scope.pass.current = "";
      $scope.pass.new = "";
@@ -116,29 +111,4 @@ angular.module('SettingsApp', ['ngCookies'])
      	}		
      }   	
      	
-     	
-     $scope.outletSettings = {};
-     $scope.outletSettings.payment = true;
-     $scope.outletSettings.reward = true;
-     $scope.outletSettings.reservation = true;
-     	
-     $scope.getOutletSettings = function(){
-     
-	     	var admin_data = {};
-	        admin_data.token = $cookies.get("akbarTokenManagementAppAdminToken");
-	        $http({
-	          method  : 'POST',
-	          url     : 'https://accelerateengine.app/client-apis/akbar/getsettingsadmin.php',
-	          data    : admin_data,
-	          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-	         })
-	         .then(function(response) {		
-			$scope.outletSettings = response.data.response;
-	         });
-	         
-	         
-     }
-     
-     $scope.getOutletSettings();    
-        
   })
