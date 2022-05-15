@@ -209,10 +209,10 @@ angular.module('TokenApp', ['ngCookies'])
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
          .then(function(response) {
-          $('#cancelModal').modal('hide');
-           if(!response.data.status){
-            alert(response.data.error);
-           }
+            $('#cancelModal').modal('hide');
+            if(!response.data.status){
+              alert(response.data.error);
+            }
           });
      }
 
