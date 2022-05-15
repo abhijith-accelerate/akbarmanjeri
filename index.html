@@ -169,7 +169,7 @@
                         </div>                                                               
                         <div class="modal-footer">                                                    
                            <button type="button" class="btn btn-default" style="float: left" data-dismiss="modal">No</button>
-                           <button type="button" class="btn btn-danger" ng-click="confirmCancel(cancelContent.cancelItemCode)">Yes, Cancel</button>
+                           <button type="button" class="btn btn-danger" ng-click="proceedCancel(cancelContent.cancelItemCode)">Yes, Cancel</button>
                         </div>
                      </div><!-- /.modal-content -->
                   </div><!-- /.modal-dialog -->
@@ -256,9 +256,7 @@
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Status</label>
-                                 <select class="form-control" id="flight_status">                     
-                                    <option value="OK">OK</option>
-                                 </select>
+                                 <input type="text" ng-model="newTokenContent.flight_status" ng-value="OK" class="form-control input-lg" placeholder="Flight Status">
                               </div>
                            </div> 
 
@@ -368,9 +366,7 @@
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Status</label>
-                                 <select class="form-control" id="flight_status">                     
-                                    <option value="OK">OK</option>
-                                 </select>
+                                 <input type="text" ng-model="newTokenContent.flight_status" ng-value="OK" class="form-control input-lg" placeholder="Flight Status">
                               </div>
                            </div> 
 

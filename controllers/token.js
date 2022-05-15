@@ -52,8 +52,7 @@ angular.module('TokenApp', ['ngCookies'])
             var today = yyyy+'-'+mm+'-'+dd;
 
             var data = {};
-            data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA=="
-            data.status = 2;
+            data.token = $cookies.get("akbarTokenManagementAppAdminToken");
             data.key = today;
             
 
@@ -114,7 +113,7 @@ angular.module('TokenApp', ['ngCookies'])
 
 
         var data = {};
-        data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA=="
+        data.token = $cookies.get("akbarTokenManagementAppAdminToken");
         data.key = $scope.searchID;
         data.id = 0;
         $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
@@ -149,7 +148,7 @@ angular.module('TokenApp', ['ngCookies'])
       $scope.loadMore = function(){
         $scope.limiter = $scope.limiter + 10;
         var data = {};
-        data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA=="
+        data.token = $cookies.get("akbarTokenManagementAppAdminToken");
         data.key = $scope.searchID;
         data.id = $scope.limiter;
 
@@ -196,6 +195,25 @@ angular.module('TokenApp', ['ngCookies'])
         $scope.cancelContent.code = code;
         $scope.cancelContent.cancelShowName = name;
         $('#cancelModal').modal('show');
+     }
+
+
+     $scope.proceedCancel = function(code) {
+        var data = {};
+        data.token = $cookies.get("akbarTokenManagementAppAdminToken");
+        data.id = code;
+        $http({
+          method  : 'POST',
+          url     : 'https://www.accelerateengine.app/client-apis/akbar/canceltoken.php',
+          data    : data,
+          headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+         })
+         .then(function(response) {
+          $('#cancelModal').modal('hide');
+           if(!response.data.status){
+            alert(response.data.error);
+           }
+          });
      }
 
 
