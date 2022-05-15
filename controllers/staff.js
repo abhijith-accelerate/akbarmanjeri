@@ -25,7 +25,7 @@ angular.module('StaffApp', ['ngCookies'])
     }
 
 
-      $scope.initAgents = function(){
+    $scope.initAgents = function(){
           var data = {};
           data.token = $cookies.get("akbarTokenManagementAppAdminToken");
 
@@ -37,6 +37,11 @@ angular.module('StaffApp', ['ngCookies'])
            })
            .then(function(data) {
               $scope.staffList = data.data.response;
+
+              if(!response.data.status){
+                alert(response.data.error);
+              }
+
             }); 
       }
       
@@ -62,6 +67,11 @@ angular.module('StaffApp', ['ngCookies'])
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })
            .then(function(response) {
+              
+              if(!response.data.status){
+                alert(response.data.error);
+              }
+
               $scope.initAgents();
             });
         }
@@ -93,6 +103,11 @@ angular.module('StaffApp', ['ngCookies'])
          .then(function(response) {
           $('#confirmationModal').modal('hide');
           $scope.initAgents();
+
+            if(!response.data.status){
+              alert(response.data.error);
+            }
+
          });
 
       }
