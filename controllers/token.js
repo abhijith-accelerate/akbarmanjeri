@@ -7,7 +7,7 @@ angular.module('TokenApp', ['ngCookies'])
 .controller('tokenGeneratorController', function($scope, $http, $interval, $cookies) {
 
       //Check if logged in
-      if(1 || $cookies.get("akbarTokenManagementAppAdminToken")){
+      if($cookies.get("akbarTokenManagementAppAdminToken")){
         $scope.isLoggedIn = true;
       }
       else{
@@ -22,8 +22,6 @@ angular.module('TokenApp', ['ngCookies'])
           window.location = "login.html";
         }
       }
-
-      $scope.outletCode = localStorage.getItem("branch");
 
 
       //Search or Order View?

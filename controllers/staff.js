@@ -8,7 +8,7 @@ angular.module('StaffApp', ['ngCookies'])
   .controller('StaffController', function($scope, $http, $interval, $cookies) {
 
     //Check if logged in
-    if(1 || $cookies.get("akbarTokenManagementAppAdminToken")){
+    if($cookies.get("akbarTokenManagementAppAdminToken")){
       $scope.isLoggedIn = true;
     }
     else{
