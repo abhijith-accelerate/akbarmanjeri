@@ -212,6 +212,8 @@ angular.module('TokenApp', ['ngCookies'])
             $('#cancelModal').modal('hide');
             if(!response.data.status){
               alert(response.data.error);
+            } else {
+              $scope.initTokens();
             }
           });
      }
