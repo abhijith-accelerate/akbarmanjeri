@@ -62,7 +62,7 @@ angular.module('TokenApp', ['ngCookies'])
             $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
             $http({
               method  : 'POST',
-              url     : 'https://accelerateengine.app/client-apis/akbar/filtertokens.php',
+              url     : 'https://www.accelerateengine.app/client-apis/akbar/filtertokens.php',
               data    : data,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}
              })
@@ -122,7 +122,7 @@ angular.module('TokenApp', ['ngCookies'])
         $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
         $http({
           method  : 'POST',
-          url     : 'https://accelerateengine.app/client-apis/akbar/filtertokens.php',
+          url     : 'https://www.accelerateengine.app/client-apis/akbar/filtertokens.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
@@ -157,7 +157,7 @@ angular.module('TokenApp', ['ngCookies'])
 
         $http({
           method  : 'POST',
-          url     : 'https://accelerateengine.app/client-apis/akbar/filtertokens.php',
+          url     : 'https://www.accelerateengine.app/client-apis/akbar/filtertokens.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
@@ -206,7 +206,7 @@ angular.module('TokenApp', ['ngCookies'])
 
      //Print Token
      $scope.printToken = function(id) {
-       window.open("https://accelerateengine.app/client-apis/akbar/tokenpdf.php?id=" + id, "_blank");
+       window.open("https://www.accelerateengine.app/client-apis/akbar/tokenpdf.php?id=" + id, "_blank");
      }
 
 
@@ -232,7 +232,7 @@ angular.module('TokenApp', ['ngCookies'])
           
           $http({
               method  : 'POST',
-              url     : 'https://accelerateengine.app/client-apis/akbar/newtoken.php',
+              url     : 'https://www.accelerateengine.app/client-apis/akbar/newtoken.php',
               data    : data,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })

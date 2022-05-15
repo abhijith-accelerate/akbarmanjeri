@@ -18,7 +18,7 @@ angular.module('AdminLoginApp', ['ngCookies'])
         data.password = $scope.password;
         $http({
           method  : 'POST',
-          url     : 'https://accelerateengine.app/client-apis/akbar/adminlogin.php',
+          url     : 'https://www.accelerateengine.app/client-apis/akbar/adminlogin.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })

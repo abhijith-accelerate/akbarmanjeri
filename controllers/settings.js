@@ -40,7 +40,7 @@ angular.module('SettingsApp', ['ngCookies'])
 
       $http({
         method  : 'POST',
-        url     : 'https://accelerateengine.app/client-apis/akbar/fetchadmininfo.php',
+        url     : 'https://www.accelerateengine.app/client-apis/akbar/fetchadmininfo.php',
         data    : data,
         headers : {'Content-Type': 'application/x-www-form-urlencoded'}
        })
@@ -90,7 +90,7 @@ angular.module('SettingsApp', ['ngCookies'])
       		
      		$http({
 	        method  : 'POST',
-	        url     : 'https://accelerateengine.app/client-apis/akbar/updateadmin.php',
+	        url     : 'https://www.accelerateengine.app/client-apis/akbar/updateadmin.php',
 	        data    : mydata,
 	        headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 	       })
