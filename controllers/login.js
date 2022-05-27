@@ -6,12 +6,10 @@ angular.module('AdminLoginApp', ['ngCookies'])
 
 .controller('adminloginController', function($scope, $http, $cookies) {
 
-    
     //Check if logged in
     if($cookies.get("akbarTokenManagementAppAdminToken")){
       window.location = "index.html";
     }
-
 
     $scope.username = "";
     $scope.password = "";

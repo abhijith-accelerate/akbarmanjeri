@@ -185,29 +185,33 @@
                            <h3 class="smallHeading">Customer Details</h3>
                            <div class="row">
                               <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Name</label>
+                                 <label class="myReservationLabel">Customer Name<i style="color: red;">*</i></label>
                                  <input type="text" ng-model="newTokenContent.customer_name" class="form-control input-lg" placeholder="Customer Name">
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">DOB</label>                                 
+                                 <label class="myReservationLabel">Mobile Number<i style="color: red;">*</i></label>
+                                 <input type="number" ng-change="copyWhatsappNumber()" ng-model="newTokenContent.customer_mobile" class="form-control input-lg" placeholder="Mobile Number">
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">WhatsApp Number</label>
+                                 <input type="number" ng-change="lockWhatsappNumber()" ng-model="newTokenContent.customer_mobile_wa" class="form-control input-lg" placeholder="WhatsApp Number">
+                              </div>
+                           </div>
+
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">DOB<i style="color: red;">*</i></label>                                 
                                  <div class="input-group date">
                                     <input type="text" ng-model="newTokenContent.customer_dob" id="customer_dob" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Mobile Number</label>
-                                 <input type="number" ng-model="newTokenContent.customer_mobile" class="form-control input-lg" placeholder="Mobile Number">
-                              </div>
-                           </div>
-
-                           <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-6">
-                                 <label class="myReservationLabel">Passport Number</label>
+                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Number<i style="color: red;">*</i></label>
                                  <input type="text" ng-model="newTokenContent.passport_number" class="form-control input-lg" placeholder="Passport Number">
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">Passport Expiry</label>
+                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Expiry<i style="color: red;">*</i></label>
                                  <div class="input-group date">
                                     <input type="text" ng-model="newTokenContent.passport_expiry" id="passport_expiry" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
@@ -218,15 +222,15 @@
                            <h3 class="smallHeading">Travel Details</h3>
                            <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">From</label>
+                                 <label class="myReservationLabel">From<i style="color: red;">*</i></label>
                                  <input type="text" ng-model="newTokenContent.travel_from" class="form-control input-lg" placeholder="From">
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">To</label>
+                                 <label class="myReservationLabel">To<i style="color: red;">*</i></label>
                                  <input type="text" ng-model="newTokenContent.travel_to" class="form-control input-lg" placeholder="To">
                               </div>     
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">Travel Date</label>
+                                 <label class="myReservationLabel">Travel Date<i style="color: red;">*</i></label>
                                  <div class="input-group date">
                                     <input type="text" ng-model="newTokenContent.travel_date" id="travel_date" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
@@ -241,22 +245,22 @@
                                  <input type="text" ng-model="newTokenContent.flight_name" class="form-control input-lg" placeholder="Flight">
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">Departure Time</label>
+                                 <label class="myReservationLabel">Departure Time<i style="color: red;">*</i></label>
                                  <div class="input-group date">
                                     <input type="text" ng-model="newTokenContent.flight_departure" class="form-control" id="time_departure">
                                     <span class="input-group-addon"><i class="ti ti-time"></i></span>
                                  </div>
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">Arrival Time</label>
+                                 <label class="myReservationLabel">Arrival Time<i style="color: red;">*</i></label>
                                  <div class="input-group date">
                                     <input type="text" ng-model="newTokenContent.flight_arrival" class="form-control" id="time_arrival">
                                     <span class="input-group-addon"><i class="ti ti-time"></i></span>
                                  </div>
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">Status</label>
-                                 <input type="text" ng-model="newTokenContent.flight_status" ng-value="OK" class="form-control input-lg" placeholder="Flight Status">
+                                 <label class="myReservationLabel">Status<i style="color: red;">*</i></label>
+                                 <input type="text" ng-model="newTokenContent.flight_status" class="form-control input-lg" placeholder="Flight Status">
                               </div>
                            </div> 
 
@@ -276,7 +280,7 @@
                            
                         </div>                                                                                       
                         <div class="modal-footer">                      
-                           <button type="button" style="float: left" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                           <button type="button" style="float: left" class="btn btn-default" data-dismiss="modal" ng-click="nullNewToken()">Cancel</button>
                            <button type="button" class="btn btn-success" ng-click="saveNewToken()">Generate Token</button>
                         </div>
                      </div><!-- /.modal-content -->
@@ -299,25 +303,29 @@
                                  <input type="text" ng-model="editTokenContent.customer_name" class="form-control input-lg" placeholder="" disabled>
                               </div>
                               <div class="col-sm-3">
+                                 <label class="myReservationLabel">Mobile Number</label>
+                                 <input type="number" ng-model="editTokenContent.customer_mobile" class="form-control input-lg" placeholder="" disabled>
+                              </div>
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">WhatsApp Number</label>
+                                 <input type="number" ng-model="editTokenContent.customer_mobile_wa" class="form-control input-lg" placeholder="" disabled>
+                              </div>
+                           </div>
+
+                           <div class="row" style="margin-top: 15px;">
+                              <div class="col-sm-3">
                                  <label class="myReservationLabel">DOB</label>                                 
                                  <div class="input-group date">
                                     <input type="text" ng-model="editTokenContent.customer_dob" id="customer_dob" class="form-control" disabled>
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Mobile Number</label>
-                                 <input type="number" ng-model="editTokenContent.customer_mobile" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                           </div>
-
-                           <div class="row" style="margin-top: 15px;">
                               <div class="col-sm-6">
-                                 <label class="myReservationLabel">Passport Number</label>
+                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Number</label>
                                  <input type="text" ng-model="editTokenContent.passport_number" class="form-control input-lg" placeholder="" disabled>
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel">Passport Expiry</label>
+                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Expiry</label>
                                  <div class="input-group date">
                                     <input type="text" ng-model="editTokenContent.passport_expiry" id="passport_expiry" class="form-control" disabled>
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>

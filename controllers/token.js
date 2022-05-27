@@ -179,7 +179,23 @@ angular.module('TokenApp', ['ngCookies'])
 
      //Add new token
      $scope.nullNewToken = function(){
-      $scope.newTokenContent = {};
+        $scope.isWhatsappLocked = false;
+        $scope.newTokenContent = {};
+        $scope.newTokenContent.customer_mobile = "";
+        $scope.newTokenContent.customer_mobile_wa = "";
+        $scope.newTokenContent.customer_name = "";
+        $scope.newTokenContent.customer_dob = "";
+        $scope.newTokenContent.passport_number = "";
+        $scope.newTokenContent.passport_expiry = "";
+        $scope.newTokenContent.travel_from = "";
+        $scope.newTokenContent.travel_to = "";
+        $scope.newTokenContent.travel_date = "";
+        $scope.newTokenContent.flight_name = "";
+        $scope.newTokenContent.flight_departure = "";
+        $scope.newTokenContent.flight_arrival = "";
+        $scope.newTokenContent.flight_status = "OK";
+        $scope.newTokenContent.customer_address = "";
+        $scope.newTokenContent.remarks = "";
      }
      $scope.nullNewToken();
      
@@ -236,26 +252,45 @@ angular.module('TokenApp', ['ngCookies'])
      }
 
 
+     $scope.isWhatsappLocked = false;
+     $scope.copyWhatsappNumber = function() {
+        if(!$scope.isWhatsappLocked)
+          $scope.newTokenContent.customer_mobile_wa = $scope.newTokenContent.customer_mobile;
+     }
+
+     $scope.lockWhatsappNumber = function(){
+        $scope.isWhatsappLocked = true;
+     }
 
       
   $scope.saveNewToken = function(){
     
     $scope.newTokenError = "";
-    
+
     if($scope.newTokenContent.customer_name == "" || !(/^[a-zA-Z ]+$/.test($scope.newTokenContent.customer_name))){
-      $scope.newTokenError = "Invalid Customer Name";
+      $scope.newTokenError = "Please enter valid Customer Name";
     }
     else if($scope.newTokenContent.customer_mobile == "" || !(/^[789]\d{9}$/.test($scope.newTokenContent.customer_mobile))){
-      $scope.newTokenError = "Invalid Mobile Number";
+      $scope.newTokenError = "Please enter valid Mobile Number";
+    } else if($scope.newTokenContent.customer_dob == ""){
+      $scope.newTokenError = "Date of Birth not added";
+    } else if($scope.newTokenContent.passport_number == "" || $scope.newTokenContent.passport_expiry == ""){
+      $scope.newTokenError = "Passport Number & Expiry needed";
+    } else if($scope.newTokenContent.travel_from == "" || $scope.newTokenContent.travel_to == ""){
+      $scope.newTokenError = "Travel From/To is not added";
+    } else if($scope.newTokenContent.travel_date == ""){
+      $scope.newTokenError = "Travel date not mentioned";
+    } else if($scope.newTokenContent.flight_departure == "" || $scope.newTokenContent.flight_arrival == ""){
+      $scope.newTokenError = "Flight departure / arrival not added";
+    } else if($scope.newTokenContent.flight_status == ""){
+      $scope.newTokenError = "Flight status not added";
     }
     else{
 
           $scope.newTokenError = "";
       
           var data = $scope.newTokenContent;
-          data.flight_status = "OK";
-          data.token = $cookies.get("akbarTokenManagementAppAdminToken"); //"\/p0OCBdltetUswGVETvNE6lxNvjFVnZ5dczhZZrTXFBpzdIz6BOndLYl1Kk8YDVbVP3udTQ9UYWCj3lyTiD3FA==";
-          
+          data.token = $cookies.get("akbarTokenManagementAppAdminToken");
           $http({
               method  : 'POST',
               url     : 'https://www.accelerateengine.app/client-apis/akbar/newtoken.php',
