@@ -42,6 +42,9 @@ angular.module('StaffApp', ['ngCookies'])
                 alert(data.data.error);
               }
 
+                $scope.agentcode = '';
+                $scope.agentname = '';
+
             }); 
       }
       
