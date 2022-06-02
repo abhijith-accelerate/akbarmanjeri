@@ -261,8 +261,8 @@
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Travel Date<i style="color: red;">*</i></label>
                                  <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.travel_date" id="travel_date" class="form-control">
-                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                    <input type="text" ng-model="newTokenContent.travel_date" id="travelDatePicker" class="form-control" ng-focus="selectTravelDate()">
+                                    <span class="input-group-addon" ng-click="selectTravelDate()"><i class="ti ti-calendar"></i></span>
                                  </div>
                               </div>                         
                            </div> 

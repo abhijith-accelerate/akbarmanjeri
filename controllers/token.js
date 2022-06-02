@@ -106,7 +106,7 @@ angular.module('TokenApp', ['ngCookies'])
   				todayHighlight: 1,
   				startView: 2,
   				minView: 2,
-  				forceParse: 0
+  				forceParse: 1
   		    }).on('changeDate', function(ev) {
   			    $scope.searchKey_TravelDate = $("#searchByTravelDatePicker").val();
   			    $scope.search("TRAVEL_DATE", $scope.searchKey_TravelDate);
@@ -131,7 +131,7 @@ angular.module('TokenApp', ['ngCookies'])
           todayHighlight: 1,
           startView: 2,
           minView: 2,
-          forceParse: 0
+          forceParse: 1
           }).on('changeDate', function(ev) {
             $scope.searchKey_SlipDate = $("#searchBySlipDatePicker").val();
             $scope.search("SLIP_DATE", $scope.searchKey_SlipDate);
@@ -144,6 +144,30 @@ angular.module('TokenApp', ['ngCookies'])
         }, 200);       
       }
 
+
+
+
+      $scope.selectTravelDate = function() {
+        setTimeout(function(){
+          $('#travelDatePicker').datetimepicker({  
+              format: "dd-mm-yyyy",
+              weekStart: 1,
+                todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 1
+          }).on('changeDate', function(ev) {
+            $scope.newTokenContent.travel_date = $("#travelDatePicker").val();
+          }).on('hide', function(ev) { 
+            $('#travelDatePicker').datetimepicker('remove');
+          });
+        
+          $("#travelDatePicker").datetimepicker().focus();
+        
+        }, 200);
+      }
 
 
       $scope.limiter = 0;
