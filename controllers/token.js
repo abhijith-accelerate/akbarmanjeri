@@ -332,9 +332,23 @@ angular.module('TokenApp', ['ngCookies'])
         $scope.isWhatsappLocked = true;
      }
 
+
+
+
+  $scope.isGenerateTokenPressed = false;
+
+
+  $scope.getGenerateTokenButton = function(){
+    return $scope.isGenerateTokenPressed ? "Generating Token..." : "Generate Token";
+  }
+
       
   $scope.saveNewToken = function(){
+
+    if($scope.isGenerateTokenPressed)
+      return;
     
+    $scope.isGenerateTokenPressed = true;
     $scope.newTokenError = "";
 
     if($scope.newTokenContent.customer_name == "" || !(/^[a-zA-Z ]+$/.test($scope.newTokenContent.customer_name))){
@@ -356,7 +370,6 @@ angular.module('TokenApp', ['ngCookies'])
       $scope.newTokenError = "Flight status not added";
     }
     else{
-
           $scope.newTokenError = "";
       
           var data = $scope.newTokenContent;
@@ -376,6 +389,10 @@ angular.module('TokenApp', ['ngCookies'])
               alert(response.data.error);
             }
            });  
+    }
+
+    if($scope.newTokenError != "";){
+      $scope.isGenerateTokenPressed = false;
     }
   
   }
