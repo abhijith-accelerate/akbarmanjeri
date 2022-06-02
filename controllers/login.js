@@ -8,7 +8,7 @@ angular.module('AdminLoginApp', ['ngCookies'])
 
     //Check if logged in
     if($cookies.get("akbarTokenManagementAppAdminToken")){
-      window.location = "index.html";
+      window.location = "token.html";
     }
 
     $scope.username = "";
@@ -37,7 +37,7 @@ angular.module('AdminLoginApp', ['ngCookies'])
                 expires: now
             });
 
-            window.location = "index.html";
+            window.location = "token.html";
           }else{
             $scope.isLoginError = true;
             $scope.warnMsg = response.data.error;

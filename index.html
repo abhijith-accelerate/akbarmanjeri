@@ -1,464 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="utf-8">
-   <title>Token App</title>
-   <link type='text/css' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600' rel='stylesheet'>
-   <link type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-   <link type="text/css" href="assets/fonts/themify-icons/themify-icons.css" rel="stylesheet">
-   <link type="text/css" href="assets/css/styles.css" rel="stylesheet">
-   <link type="text/css" href="assets/plugins/codeprettifier/prettify.css" rel="stylesheet">
-   <link type="text/css" href="assets/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Admin Login</title>
 
-   <link rel="shortcut icon" href="assets/icons/favicon.png">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600' rel='stylesheet' type='text/css'>
+    <link type="text/css" href="assets/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet">
+    <link type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" href="assets/fonts/themify-icons/themify-icons.css" rel="stylesheet">               <!-- Themify Icons -->
+    <link type="text/css" href="assets/css/styles.css" rel="stylesheet">
 
-   <!-- Controller -->
-   <script src="assets/js/jquery.js"></script>
-   <script src="assets/js/angular.min.js"></script>
-   <script src="assets/js/angular-cookies.min.js"></script>
-   <script src="controllers/token.js"></script>
-   <script src="controllers/login.js"></script>
+    <link rel="shortcut icon" href="assets/icons/favicon.png">
 
-</head>
+    <!-- Controller -->
+      <script src="assets/js/jquery.js"></script>
+      <script src="assets/js/angular.min.js"></script>
+      <script src="assets/js/angular-cookies.min.js"></script>
+      <script src="controllers/login.js"></script>
 
-   <body class="" ng-app="TokenApp" ng-controller="tokenGeneratorController" ng-cloak>
-     <header id="topnav" class="navbar navbar-default navbar-fixed-top" role="banner">
-        <div class="logo-area">
-           <span id="trigger-sidebar" class="toolbar-trigger toolbar-icon-bg">
-           <a data-toggle="tooltips" data-placement="right" title="Toggle Sidebar">
-           <span class="icon-bg">
-           <i class="ti ti-menu"></i>
-           </span>
-           </a>
-           </span>
-           <a class="navbar-brand" href="index.html" style="width: 40px"></a>
-           <h1 style="font-size: 18px; font-weight: bold; text-transform: uppercase">Akbar Manjeri</h1>
-        </div>
-        <!-- logo-area -->
-        <ul class="nav navbar-nav toolbar pull-right">
-           <li class="toolbar-icon-bg hidden-xs" id="trigger-fullscreen">
-              <a href="#" class="toggle-fullscreen"><span class="icon-bg"><i class="ti ti-zoom-in"></i></span></i></a>
-           </li>
-           <li class="dropdown toolbar-icon-bg">
-              <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
-              <img class="img-circle" src="assets/img/default_user.png" alt="" />
-              </a>
-              <ul class="dropdown-menu userinfo arrow">
-                 <li><a href="settings.html"><i class="ti ti-settings"></i><span>Settings</span></a></li>
-                 <li ng-click="logoutNow()"><a href="#/"><i class="ti ti-shift-right"></i><span>Sign Out</span></a></li>
-              </ul>
-           </li>
-        </ul>
-     </header>
+    </head>
+
+    <body class="focused-form animated-content" ng-app="AdminLoginApp" ng-controller="adminloginController" ng-cloak>
 
 
-      <div id="wrapper">
-         <div id="layout-static">
-           <div class="static-sidebar-wrapper sidebar-default">
-              <div class="static-sidebar">
-                 <div class="sidebar">
-                    <div class="widget stay-on-collapse" id="widget-sidebar">
-                       <nav role="navigation" class="widget-body">
-                           <ul class="acc-menu">
-                              <li><a href="index.html"><i class="ti ti-receipt"></i><span>Tokens</span></a></li>
-                              <li><a href="settings.html"><i class="ti ti-settings"></i><span>Settings</span></a></li>
-                              <li><a href="staff-registry.html"><i class="ti ti-user"></i><span>Manager Users</span></a></li>
-                           </ul>
-                       </nav>
-                    </div>
-                 </div>
-              </div>
-           </div>
+<div class="container" id="login-form">
 
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+        <a href="" class="login-logo"><img src="assets/img/designer_logo.png" height="200px"></a>
+				<div class="panel panel-default">
 
-            <div class="static-content-wrapper">
-               <div class="static-content">
-                  <div class="page-content">
-                     <ol class="breadcrumb">
-                     </ol>
-                     <div class="container-fluid">
-                        <div data-widget-group="group1">
+					<div class="panel-heading">
+						<h2>Login</h2>
+					</div>
+					<div class="panel-body">
 
-                          <div class="row" style="padding-bottom: 30px">
+						<form action="" class="form-horizontal" id="validate-form">
+							<div class="form-group mb-md">
+		                        <div class="col-xs-12">
+		                        	<div class="input-group">
+										<span class="input-group-addon">
+											<i class="ti ti-user"></i>
+										</span>
+										<input type="text" class="form-control" placeholder="Username" ng-model="username" required>
+									</div>
+		                        </div>
+							</div>
 
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">SEARCH WITH <b>SLIP NUMBER</b></label>
-                                 <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_SlipNumber" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields()">
-                                   <span class="input-group-btn">
-                                   <button style="margin-left: 5px" class="btn btn-default btn-lg" type="button" ng-click="search('SLIP_NUMBER', searchKey_SlipNumber)"><i class="ti ti-search"></i></button>
-                                   </span>
-                                 </div>
-                             </div>
-                             <div class="col-sm-3">
-                                 <label class="myReservationLabel">SEARCH WITH CUSTOMER <b>MOBILE OR NAME</b></label>
-                                 <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_Mobile" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields('CUSTOMER_MOBILE')">
-                                   <span class="input-group-btn">
-                                   <button style="margin-left: 5px" class="btn btn-default btn-lg" type="button" ng-click="search('CUSTOMER_MOBILE', searchKey_Mobile)"><i class="ti ti-search"></i></button>
-                                   </span>
-                                 </div>
-                             </div>
-                             <div class="col-sm-3">
-                                 <label class="myReservationLabel">SEARCH BY <b>TRAVEL DATE</b></label>
-                                 <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_TravelDate" id="searchByTravelDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields(); searchByTravelDate()">
-                                   <span class="input-group-btn">
-                                   <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchByTravelDate()"><i class="ti ti-calendar"></i></button>
-                                   </span>
-                                   </span>
-                                 </div>
-                             </div>
-                             <div class="col-sm-3">
-                                 <label class="myReservationLabel">SEARCH BY <b>SLIP DATE</b></label>
-                                 <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_SlipDate" id="searchBySlipDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields(); searchBySlipDate()">
-                                   <span class="input-group-btn">
-                                   <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchBySlipDate()"><i class="ti ti-calendar"></i></button>
-                                   </span>
-                                   </span>
-                                 </div>
-                             </div>
+							<div class="form-group mb-md">
+		                        <div class="col-xs-12">
+		                        	<div class="input-group">
+										<span class="input-group-addon">
+											<i class="ti ti-key"></i>
+										</span>
+										<input type="password" class="form-control" ng-model="password" placeholder="Password">
+									</div>
+		                        </div>
+							</div>
 
-                          </div>
+						</form>
+					</div>
+					<div class="panel-footer">
+            			<p ng-if="isLoginError" style="float: left; color: red;">{{warnMsg}}</p>
+						<div class="clearfix">
+							<a ng-click="loginadmin()" class="btn btn-primary pull-right">Login</a>
+						</div>
+					</div>
+				</div>
 
+			</div>
+		</div>
+</div>
 
-                          <!-- Default Results -->
-                          <div class="tab-content" ng-if="!isSearched">
-                             <div class="tab-pane active" id="tab-projects">
-                                <div class="panel panel-default">
-                                   <div class="panel-heading">
-                                      <h2 style="width: 100%">{{filterTitle}}<button class="btn btn-success-alt btn-sm" style="float: right" ng-click="openNewToken()">Add New</button></h2>
-                                   </div>
-                                   <div class="panel-body">     
-                                     <div id="vegaPanelBodyLoader"></div>                               
-                                     <div class="row" ng-if="!isOrdersFound" style="padding-top: 30px">                                     
-                                       <p style="font-size:21px; text-align: center; color: #7f8c8d">{{resultMessage}}</p>
-                                     </div>
-                                      <div class="table-responsive" ng-if="isOrdersFound">                                      	 
-                                         <table class="table m-n">
-                                           <col width="5%">
-                                           <col width="25%">
-                                           <col width="15%">
-                                           <col width="15%">
-                                           <col width="20%">
-                                           <col width="20%">
-                                            <thead>
-                                              <tr>
-                                                 <th>Token</th>
-                                                 <th>Customer</th>
-                                                 <th>Travelling</th>
-                                                 <th>Date</th>
-                                                 <th>Staff</th>
-                                                 <th></th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr ng-repeat="token in generatedTokens track by $index">
-                                                 <td>{{token.id}}</td>
-                                                 <td>{{token.customer_name}}<br><name style="font-size: 12px">{{token.customer_mobile}}</name></td>
-                                                 <td>{{token.travel_from}} to {{token.travel_to}}</td>
-                                                 <td>{{token.travel_date}}</td>
-                                                 <td>
-                                                   {{token.staff_name}}
-                                                   <i style="display: block">{{token.remarks}}</i>
-                                                 </td>
-                                                 <td>
-                                                    <button ng-click="editToken(token)">View</button>
-                                                    <button ng-click="printToken(token.id)">Print</button>
-                                                    <button ng-click="confirmCancel(token.id, token.customer_name)">Delete</button>
-                                                 </td>
-                                              </tr>
-                                            </tbody>
-                                         </table>
-                                         <center>
-                                           <br>
-                                           <button class="btn btn-lg" ng-if="isMoreLeft" style="background: transparent; border: 1px solid" ng-click="loadMore()">Load More</button>
-                                         </center>
-                                      </div>
-                                      <!-- /.table-responsive -->
+<!-- <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script> 							<!-- Load jQuery -->
+<script type="text/javascript" src="assets/js/jqueryui-1.10.3.min.js"></script> 							<!-- Load jQueryUI -->
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 								<!-- Load Bootstrap -->
+<script type="text/javascript" src="assets/js/enquire.min.js"></script> 									<!-- Load Enquire -->
 
-                                   </div>
-                                   <!-- /.panel-body -->
-                                </div>
-                             </div>
+<script type="text/javascript" src="assets/plugins/velocityjs/velocity.min.js"></script>					<!-- Load Velocity for Animated Content -->
+<script type="text/javascript" src="assets/plugins/velocityjs/velocity.ui.min.js"></script>
 
-                          </div>
+<script type="text/javascript" src="assets/plugins/wijets/wijets.js"></script>     						<!-- Wijet -->
 
+<script type="text/javascript" src="assets/plugins/codeprettifier/prettify.js"></script> 				<!-- Code Prettifier  -->
+<script type="text/javascript" src="assets/plugins/bootstrap-switch/bootstrap-switch.js"></script> 		<!-- Swith/Toggle Button -->
 
+<script type="text/javascript" src="assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js"></script>  <!-- Bootstrap Tabdrop -->
 
+<script type="text/javascript" src="assets/plugins/iCheck/icheck.min.js"></script>     					<!-- iCheck -->
 
+<script type="text/javascript" src="assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js"></script> <!-- nano scroller -->
 
-               <!-- CANCEL Confirmation Modal -->
-               <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">   
-                        <div class="modal-body" style="padding-bottom: 40px">                   
-                           <p style="font-size: 16px; color: #95a5a6; float: left">Do you really want to delete this token for <strong style="color: #e74c3c">{{cancelContent.cancelShowName}}</strong>?</p>
-                        </div>                                                               
-                        <div class="modal-footer">                                                    
-                           <button type="button" class="btn btn-default" style="float: left" data-dismiss="modal">No</button>
-                           <button type="button" class="btn btn-danger" ng-click="proceedCancel(cancelContent.cancelItemCode)">Yes, Cancel</button>
-                        </div>
-                     </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-               </div><!-- /.modal -->    
-               
-               
-               <!-- NEW Token Modal -->
-               <div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" style="min-width: 900px !important;">
-                     <div class="modal-content">
-                        <div class="modal-body">
-                           <h2 style="text-align: center;">New Token</h2>
-                           <h3 class="smallHeading">Customer Details</h3>
-                           <div class="row">
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Name<i style="color: red;">*</i></label>
-                                 <input type="text" ng-model="newTokenContent.customer_name" class="form-control input-lg" placeholder="Customer Name">
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Mobile Number<i style="color: red;">*</i></label>
-                                 <input type="number" ng-change="copyWhatsappNumber()" ng-model="newTokenContent.customer_mobile" class="form-control input-lg" placeholder="Mobile Number">
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">WhatsApp Number</label>
-                                 <input type="number" ng-change="lockWhatsappNumber()" ng-model="newTokenContent.customer_mobile_wa" class="form-control input-lg" placeholder="WhatsApp Number">
-                              </div>
-                           </div>
+<script type="text/javascript" src="assets/js/application.js"></script>
 
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">DOB<i style="color: red;">*</i></label>                                 
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.customer_dob" id="customer_dob" class="form-control">
-                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Number<i style="color: red;">*</i></label>
-                                 <input type="text" ng-model="newTokenContent.passport_number" class="form-control input-lg" placeholder="Passport Number">
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Expiry</label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.passport_expiry" id="passport_expiry" class="form-control">
-                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
-                                 </div>
-                              </div>
-                           </div>
-
-                           <h3 class="smallHeading">Travel Details</h3>
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">From<i style="color: red;">*</i></label>
-                                 <input type="text" ng-model="newTokenContent.travel_from" class="form-control input-lg" placeholder="From">
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">To<i style="color: red;">*</i></label>
-                                 <input type="text" ng-model="newTokenContent.travel_to" class="form-control input-lg" placeholder="To">
-                              </div>     
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Travel Date<i style="color: red;">*</i></label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.travel_date" id="travelDatePicker" class="form-control" ng-focus="selectTravelDate()">
-                                    <span class="input-group-addon" ng-click="selectTravelDate()"><i class="ti ti-calendar"></i></span>
-                                 </div>
-                              </div>                         
-                           </div> 
-
-                           <h3 class="smallHeading">Flight Details</h3>
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Flight</label>
-                                 <input type="text" ng-model="newTokenContent.flight_name" class="form-control input-lg" placeholder="Flight">
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Departure Time<i style="color: red;">*</i></label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.flight_departure" class="form-control" id="time_departure">
-                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
-                                 </div>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Arrival Time<i style="color: red;">*</i></label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="newTokenContent.flight_arrival" class="form-control" id="time_arrival">
-                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
-                                 </div>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Status<i style="color: red;">*</i></label>
-                                 <input type="text" ng-model="newTokenContent.flight_status" class="form-control input-lg" placeholder="Flight Status">
-                              </div>
-                           </div> 
-
-                           <h3 class="smallHeading" style="color: #c7d34d">Other Details</h3>
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Address</label>
-                                 <textarea ng-model="newTokenContent.customer_address" class="form-control input-lg" placeholder="Customer Address"></textarea>
-                              </div>
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Remarks</label>
-                                 <textarea ng-model="newTokenContent.remarks" class="form-control input-lg" placeholder="Any Remarks"></textarea>
-                              </div>
-                              <p ng-show="newTokenError != ''" style="margin: 20px 0px 0px 15px; color: #e74c3c">{{newTokenError}}</p>    
-                           </div>
-                                
-                           
-                        </div>                                                                                       
-                        <div class="modal-footer">                      
-                           <button type="button" style="float: left" class="btn btn-default" data-dismiss="modal" ng-click="nullNewToken()">Cancel</button>
-                           <button type="button" class="btn btn-success" ng-click="saveNewToken()">{{getGenerateTokenButton()}}</button>
-                        </div>
-                     </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-               </div><!-- /.modal -->    
-               
-               
-
-
-               <!-- Edit Token Modal -->
-               <div class="modal fade" id="tokenEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" style="min-width: 900px !important;">
-                     <div class="modal-content">
-                        <div class="modal-body">
-                           <h2 style="text-align: center;">Token - <b>{{editTokenContent.id}}</b></h2>
-                           <h3 class="smallHeading">Customer Details</h3>
-                           <div class="row">
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Name</label>
-                                 <input type="text" ng-model="editTokenContent.customer_name" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Mobile Number</label>
-                                 <input type="text" ng-model="editTokenContent.customer_mobile" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">WhatsApp Number</label>
-                                 <input type="text" ng-model="editTokenContent.customer_mobile_wa" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                           </div>
-
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">DOB</label>                                 
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.customer_dob" id="customer_dob" class="form-control" disabled>
-                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Number</label>
-                                 <input type="text" ng-model="editTokenContent.passport_number" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Expiry</label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.passport_expiry" id="passport_expiry" class="form-control" disabled>
-                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
-                                 </div>
-                              </div>
-                           </div>
-
-                           <h3 class="smallHeading">Travel Details</h3>
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">From</label>
-                                 <input type="text" ng-model="editTokenContent.travel_from" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">To</label>
-                                 <input type="text" ng-model="editTokenContent.travel_to" class="form-control input-lg" placeholder="" disabled>
-                              </div>     
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Travel Date</label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.travel_date" id="travel_date" class="form-control" disabled>
-                                    <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
-                                 </div>
-                              </div>                         
-                           </div> 
-
-                           <h3 class="smallHeading">Flight Details</h3>
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Flight</label>
-                                 <input type="text" ng-model="editTokenContent.flight_name" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Departure Time</label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.flight_departure" class="form-control" id="time_departure" disabled>
-                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
-                                 </div>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Arrival Time</label>
-                                 <div class="input-group date">
-                                    <input type="text" ng-model="editTokenContent.flight_arrival" class="form-control" id="time_arrival" disabled>
-                                    <span class="input-group-addon"><i class="ti ti-time"></i></span>
-                                 </div>
-                              </div>
-                              <div class="col-sm-3">
-                                 <label class="myReservationLabel">Status</label>
-                                 <input type="text" ng-model="newTokenContent.flight_status" ng-value="OK" class="form-control input-lg" placeholder="" disabled>
-                              </div>
-                           </div> 
-
-                           <h3 class="smallHeading" style="color: #c7d34d">Other Details</h3>
-                           <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Address</label>
-                                 <textarea ng-model="editTokenContent.customer_address" class="form-control input-lg" placeholder="" disabled></textarea>
-                              </div>
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Remarks</label>
-                                 <textarea ng-model="editTokenContent.remarks" class="form-control input-lg" placeholder="" disabled></textarea>
-                              </div>  
-                           </div>
-                                
-                           
-                        </div>                                                                                       
-                        <div class="modal-footer">                      
-                           <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-                        </div>
-                     </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-               </div><!-- /.modal -->    
-               
-            
-
-
-
-                        </div>
-                     </div>
-                     <!-- .container-fluid -->
-                  </div>
-                  <!-- #page-content -->
-               </div>
-            </div>
-         </div>
-      </div>
-
-         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> 
-      <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script> 							<!-- Load jQuery -->
-      <script type="text/javascript" src="assets/js/jqueryui-1.10.3.min.js"></script> 							<!-- Load jQueryUI -->
-      <script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 								<!-- Load Bootstrap -->
-      <script type="text/javascript" src="assets/js/enquire.min.js"></script> 									<!-- Load Enquire -->
-      <script type="text/javascript" src="assets/plugins/velocityjs/velocity.min.js"></script>					<!-- Load Velocity for Animated Content -->
-      <script type="text/javascript" src="assets/plugins/velocityjs/velocity.ui.min.js"></script>
-      <script type="text/javascript" src="assets/plugins/wijets/wijets.js"></script>     						<!-- Wijet -->
-      <script type="text/javascript" src="assets/plugins/codeprettifier/prettify.js"></script> 				<!-- Code Prettifier  -->
-      <script type="text/javascript" src="assets/plugins/bootstrap-switch/bootstrap-switch.js"></script> 		<!-- Swith/Toggle Button -->
-      <script type="text/javascript" src="assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js"></script>  <!-- Bootstrap Tabdrop -->
-      <script type="text/javascript" src="assets/plugins/iCheck/icheck.min.js"></script>     					<!-- iCheck -->
-      <script type="text/javascript" src="assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js"></script> <!-- nano scroller -->
-      <script type="text/javascript" src="assets/js/application.js"></script>
-      <script type="text/javascript" src="assets/demo/demo.js"></script>
-      
-      <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> <!-- DateTime Picker -->
-
-   </body>
+    </body>
 </html>

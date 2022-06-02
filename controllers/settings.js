@@ -13,14 +13,14 @@ angular.module('SettingsApp', ['ngCookies'])
     }
     else{
       $scope.isLoggedIn = false;
-      window.location = "login.html";
+      window.location = "index.html";
     }
 
     //Logout function
     $scope.logoutNow = function(){
       if($cookies.get("akbarTokenManagementAppAdminToken")){
         $cookies.remove("akbarTokenManagementAppAdminToken");
-        window.location = "login.html";
+        window.location = "index.html";
       }
     }
 
