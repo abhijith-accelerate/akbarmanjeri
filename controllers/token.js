@@ -266,6 +266,8 @@ angular.module('TokenApp', ['ngCookies'])
         $scope.newTokenContent.flight_status = "OK";
         $scope.newTokenContent.customer_address = "";
         $scope.newTokenContent.remarks = "";
+
+        $scope.isGenerateTokenPressed = false;
      }
      $scope.nullNewToken();
      
@@ -388,6 +390,7 @@ angular.module('TokenApp', ['ngCookies'])
             else{
               alert(response.data.error);
             }
+
            });  
     }
 
