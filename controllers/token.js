@@ -391,7 +391,7 @@ angular.module('TokenApp', ['ngCookies'])
            });  
     }
 
-    if($scope.newTokenError != "";){
+    if($scope.newTokenError != ""){
       $scope.isGenerateTokenPressed = false;
     }
   
