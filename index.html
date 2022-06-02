@@ -102,7 +102,7 @@
                              <div class="col-sm-3">
                                  <label class="myReservationLabel">SEARCH BY <b>TRAVEL DATE</b></label>
                                  <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_TravelDate" id="searchByTravelDatePicker" class="form-control input-lg" style="text-align: center" placeholder="">
+                                   <input type="text" ng-model="searchKey_TravelDate" id="searchByTravelDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="searchByTravelDate()">
                                    <span class="input-group-btn">
                                    <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchByTravelDate()"><i class="ti ti-calendar"></i></button>
                                    </span>
@@ -112,7 +112,7 @@
                              <div class="col-sm-3">
                                  <label class="myReservationLabel">SEARCH BY <b>SLIP DATE</b></label>
                                  <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_SlipDate" id="searchBySlipDatePicker" class="form-control input-lg" style="text-align: center" placeholder="">
+                                   <input type="text" ng-model="searchKey_SlipDate" id="searchBySlipDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="searchBySlipDate()">
                                    <span class="input-group-btn">
                                    <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchBySlipDate()"><i class="ti ti-calendar"></i></button>
                                    </span>
