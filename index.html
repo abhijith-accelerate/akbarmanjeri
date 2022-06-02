@@ -84,7 +84,7 @@
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">SEARCH WITH <b>SLIP NUMBER</b></label>
                                  <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_SlipNumber" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="">
+                                   <input type="text" ng-model="searchKey_SlipNumber" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields()">
                                    <span class="input-group-btn">
                                    <button style="margin-left: 5px" class="btn btn-default btn-lg" type="button" ng-click="search('SLIP_NUMBER', searchKey_SlipNumber)"><i class="ti ti-search"></i></button>
                                    </span>
@@ -93,7 +93,7 @@
                              <div class="col-sm-3">
                                  <label class="myReservationLabel">SEARCH WITH CUSTOMER <b>MOBILE OR NAME</b></label>
                                  <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_Mobile" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="">
+                                   <input type="text" ng-model="searchKey_Mobile" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields('CUSTOMER_MOBILE')">
                                    <span class="input-group-btn">
                                    <button style="margin-left: 5px" class="btn btn-default btn-lg" type="button" ng-click="search('CUSTOMER_MOBILE', searchKey_Mobile)"><i class="ti ti-search"></i></button>
                                    </span>
@@ -102,7 +102,7 @@
                              <div class="col-sm-3">
                                  <label class="myReservationLabel">SEARCH BY <b>TRAVEL DATE</b></label>
                                  <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_TravelDate" id="searchByTravelDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="searchByTravelDate()">
+                                   <input type="text" ng-model="searchKey_TravelDate" id="searchByTravelDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields(); searchByTravelDate()">
                                    <span class="input-group-btn">
                                    <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchByTravelDate()"><i class="ti ti-calendar"></i></button>
                                    </span>
@@ -112,7 +112,7 @@
                              <div class="col-sm-3">
                                  <label class="myReservationLabel">SEARCH BY <b>SLIP DATE</b></label>
                                  <div class="input-group" style="border: none;">
-                                   <input type="text" ng-model="searchKey_SlipDate" id="searchBySlipDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="searchBySlipDate()">
+                                   <input type="text" ng-model="searchKey_SlipDate" id="searchBySlipDatePicker" class="form-control input-lg" style="text-align: center" placeholder="" ng-focus="clearSearchFields(); searchBySlipDate()">
                                    <span class="input-group-btn">
                                    <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchBySlipDate()"><i class="ti ti-calendar"></i></button>
                                    </span>
@@ -333,11 +333,11 @@
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Mobile Number</label>
-                                 <input type="number" ng-model="editTokenContent.customer_mobile" class="form-control input-lg" placeholder="" disabled>
+                                 <input type="text" ng-model="editTokenContent.customer_mobile" class="form-control input-lg" placeholder="" disabled>
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">WhatsApp Number</label>
-                                 <input type="number" ng-model="editTokenContent.customer_mobile_wa" class="form-control input-lg" placeholder="" disabled>
+                                 <input type="text" ng-model="editTokenContent.customer_mobile_wa" class="form-control input-lg" placeholder="" disabled>
                               </div>
                            </div>
 

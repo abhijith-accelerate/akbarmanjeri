@@ -38,8 +38,13 @@ angular.module('TokenApp', ['ngCookies'])
       $scope.searchKey = '';
       $scope.searchType = 'SLIP_DATE';
 
-      $scope.searchKey_SlipNumber = "";
-      $scope.searchKey_Mobile = "";
+      $scope.clearSearchFields = function(optionalField){
+        $scope.searchKey_SlipNumber = "";
+        if(optionalField != 'CUSTOMER_MOBILE')
+          $scope.searchKey_Mobile = "";
+        $scope.searchKey_TravelDate = "";
+        $scope.searchKey_SlipDate = "";
+      }
 
 
       $scope.isOrdersFound = false;
