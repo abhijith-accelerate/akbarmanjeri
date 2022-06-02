@@ -79,18 +79,47 @@
                      <div class="container-fluid">
                         <div data-widget-group="group1">
 
-                          <div class="row">
-                             <div class="col-sm-2"></div>
-                             <div class="col-sm-8">
-                                <div class="input-group" style="padding: 10px; border: none;">
-                                   <input type="text" ng-model="searchID" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="">
+                          <div class="row" style="padding-bottom: 30px">
+
+                              <div class="col-sm-3">
+                                 <label class="myReservationLabel">SEARCH WITH <b>SLIP NUMBER</b></label>
+                                 <div class="input-group" style="border: none;">
+                                   <input type="text" ng-model="searchKey_SlipNumber" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="">
                                    <span class="input-group-btn">
-                                   <button class="btn btn-default btn-lg" type="button" ng-click="search(searchID)"><i class="ti ti-search"></i></button>
-                                   <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 10px" ng-click="searchByDate()"><i class="ti ti-calendar"></i></button>
+                                   <button style="margin-left: 5px" class="btn btn-default btn-lg" type="button" ng-click="search('SLIP_NUMBER', searchKey_SlipNumber)"><i class="ti ti-search"></i></button>
                                    </span>
-                                </div>
-                                <p ng-if="!isSearched" style="font-size:16px; text-align: center; color: #bdc3c7">Search with Mobile Number or Name or Token Number or filter by Date by clicking <i class="fa fa-calendar" style="font-size: 90%; padding: 0px 2px"></i> icon.</p>
+                                 </div>
                              </div>
+                             <div class="col-sm-3">
+                                 <label class="myReservationLabel">SEARCH WITH CUSTOMER <b>MOBILE OR NAME</b></label>
+                                 <div class="input-group" style="border: none;">
+                                   <input type="text" ng-model="searchKey_Mobile" id="mySearchBox" class="form-control input-lg" style="text-align: center" placeholder="">
+                                   <span class="input-group-btn">
+                                   <button style="margin-left: 5px" class="btn btn-default btn-lg" type="button" ng-click="search('CUSTOMER_MOBILE', searchKey_Mobile)"><i class="ti ti-search"></i></button>
+                                   </span>
+                                 </div>
+                             </div>
+                             <div class="col-sm-3">
+                                 <label class="myReservationLabel">SEARCH BY <b>TRAVEL DATE</b></label>
+                                 <div class="input-group" style="border: none;">
+                                   <input type="text" ng-model="searchKey_TravelDate" id="searchByTravelDatePicker" class="form-control input-lg" style="text-align: center" placeholder="">
+                                   <span class="input-group-btn">
+                                   <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchByTravelDate()"><i class="ti ti-calendar"></i></button>
+                                   </span>
+                                   </span>
+                                 </div>
+                             </div>
+                             <div class="col-sm-3">
+                                 <label class="myReservationLabel">SEARCH BY <b>SLIP DATE</b></label>
+                                 <div class="input-group" style="border: none;">
+                                   <input type="text" ng-model="searchKey_SlipDate" id="searchBySlipDatePicker" class="form-control input-lg" style="text-align: center" placeholder="">
+                                   <span class="input-group-btn">
+                                   <button class="btn btn-default btn-lg" type="button" title="Search By Date" style="margin-left: 5px" ng-click="searchBySlipDate()"><i class="ti ti-calendar"></i></button>
+                                   </span>
+                                   </span>
+                                 </div>
+                             </div>
+
                           </div>
 
 
@@ -211,7 +240,7 @@
                                  <input type="text" ng-model="newTokenContent.passport_number" class="form-control input-lg" placeholder="Passport Number">
                               </div>
                               <div class="col-sm-3">
-                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Expiry<i style="color: red;">*</i></label>
+                                 <label class="myReservationLabel" style="color: #9c27b0; font-weight: bold; text-decoration: underline;">Passport Expiry</label>
                                  <div class="input-group date">
                                     <input type="text" ng-model="newTokenContent.passport_expiry" id="passport_expiry" class="form-control">
                                     <span class="input-group-addon"><i class="ti ti-calendar"></i></span>

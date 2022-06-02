@@ -7,7 +7,7 @@ angular.module('TokenApp', ['ngCookies'])
 .controller('tokenGeneratorController', function($scope, $http, $interval, $cookies) {
 
       //Check if logged in
-      if($cookies.get("akbarTokenManagementAppAdminToken")){
+      if(1 || $cookies.get("akbarTokenManagementAppAdminToken")){
         $scope.isLoggedIn = true;
       }
       else{
@@ -34,7 +34,14 @@ angular.module('TokenApp', ['ngCookies'])
 
       //Search Key
       $scope.isSearched = false;
-      $scope.searchID = '';
+      
+      $scope.searchKey = '';
+      $scope.searchType = 'SLIP_DATE';
+
+      $scope.searchKey_SlipNumber = "";
+      $scope.searchKey_Mobile = "";
+
+
       $scope.isOrdersFound = false;
       $scope.resultMessage = '';
       $scope.filterTitle = 'Today\'s Generated Tokens';
@@ -43,17 +50,21 @@ angular.module('TokenApp', ['ngCookies'])
 
       //Default Results : Generated tokens of the day
       $scope.initTokens = function() {
+
+            $scope.searchType = 'SLIP_DATE';
+
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth()+1;
             var yyyy = today.getFullYear();
             if(dd<10){ dd='0'+dd;}
             if(mm<10){ mm='0'+mm;}
-            var today = yyyy+'-'+mm+'-'+dd;
+            var today = dd+'-'+mm+'-'+yyyy;
 
             var data = {};
             data.token = $cookies.get("akbarTokenManagementAppAdminToken");
             data.key = today;
+            data.type = "SLIP_DATE";
             
 
             $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
@@ -79,42 +90,71 @@ angular.module('TokenApp', ['ngCookies'])
 
       $scope.initTokens();
 
-      $scope.searchByDate = function(){    
-	    $scope.searchID = "";
-	    setTimeout(function(){
-		    $('#mySearchBox').datetimepicker({  
-			    	format: "yyyy-mm-dd",
-			    	weekStart: 1,
-		        	todayBtn:  1,
-				autoclose: 1,
-				todayHighlight: 1,
-				startView: 2,
-				minView: 2,
-				forceParse: 0
-		    }).on('changeDate', function(ev) {
-			    $scope.searchID = $("#mySearchBox").val();
-			    $scope.search();
-		    }).on('hide', function(ev) { 
-			    $('#mySearchBox').datetimepicker('remove');
-		    });
-			
-		    $("#mySearchBox").datetimepicker().focus();
-	    
-	    }, 200);	     
+      $scope.searchByTravelDate = function(){    
+  	    $scope.searchKey_TravelDate = "";
+  	    setTimeout(function(){
+  		    $('#searchByTravelDatePicker').datetimepicker({  
+  			    	format: "dd-mm-yyyy",
+  			    	weekStart: 1,
+  		        	todayBtn:  1,
+  				autoclose: 1,
+  				todayHighlight: 1,
+  				startView: 2,
+  				minView: 2,
+  				forceParse: 0
+  		    }).on('changeDate', function(ev) {
+  			    $scope.searchKey_TravelDate = $("#searchByTravelDatePicker").val();
+  			    $scope.search("TRAVEL_DATE", $scope.searchKey_TravelDate);
+  		    }).on('hide', function(ev) { 
+  			    $('#searchByTravelDatePicker').datetimepicker('remove');
+  		    });
+  			
+  		    $("#searchByTravelDatePicker").datetimepicker().focus();
+  	    
+  	    }, 200);	     
       }
       
+
+      $scope.searchBySlipDate = function(){    
+        $scope.searchKey_SlipDate = "";
+        setTimeout(function(){
+          $('#searchBySlipDatePicker').datetimepicker({  
+              format: "dd-mm-yyyy",
+              weekStart: 1,
+                todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0
+          }).on('changeDate', function(ev) {
+            $scope.searchKey_SlipDate = $("#searchBySlipDatePicker").val();
+            $scope.search("SLIP_DATE", $scope.searchKey_SlipDate);
+          }).on('hide', function(ev) { 
+            $('#searchBySlipDatePicker').datetimepicker('remove');
+          });
+        
+          $("#searchBySlipDatePicker").datetimepicker().focus();
+        
+        }, 200);       
+      }
+
 
 
       $scope.limiter = 0;
 
-      $scope.search = function() {
+      $scope.search = function(type, keyValue) {
         //Switch to list view in case not
         $scope.isViewingOrder = false;
 
+        //For loadMore only
+        $scope.searchKey = keyValue;
+        $scope.searchType = type;
 
         var data = {};
         data.token = $cookies.get("akbarTokenManagementAppAdminToken");
-        data.key = $scope.searchID;
+        data.key = keyValue;
+        data.type = type;
         data.id = 0;
         $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
         $http({
@@ -149,7 +189,8 @@ angular.module('TokenApp', ['ngCookies'])
         $scope.limiter = $scope.limiter + 10;
         var data = {};
         data.token = $cookies.get("akbarTokenManagementAppAdminToken");
-        data.key = $scope.searchID;
+        data.key = $scope.searchKey;
+        data.type = $scope.searchType;
         data.id = $scope.limiter;
 
         $http({
@@ -237,8 +278,8 @@ angular.module('TokenApp', ['ngCookies'])
 
 
 
-     //Edit Token
-     $scope.editTokenContent = {};
+    //Edit Token
+    $scope.editTokenContent = {};
     $scope.editToken = function(content){
       $scope.editTokenContent = content;
       $('#tokenEditModal').modal('show');
@@ -274,8 +315,8 @@ angular.module('TokenApp', ['ngCookies'])
       $scope.newTokenError = "Please enter valid Mobile Number";
     } else if($scope.newTokenContent.customer_dob == ""){
       $scope.newTokenError = "Date of Birth not added";
-    } else if($scope.newTokenContent.passport_number == "" || $scope.newTokenContent.passport_expiry == ""){
-      $scope.newTokenError = "Passport Number & Expiry needed";
+    } else if($scope.newTokenContent.passport_number == ""){
+      $scope.newTokenError = "Passport Number not added";
     } else if($scope.newTokenContent.travel_from == "" || $scope.newTokenContent.travel_to == ""){
       $scope.newTokenError = "Travel From/To is not added";
     } else if($scope.newTokenContent.travel_date == ""){
