@@ -214,8 +214,8 @@
                            <h3 class="smallHeading">Customer Details</h3>
                            <div class="row">
                               <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Name<i style="color: red;">*</i></label>
-                                 <input type="text" ng-model="newTokenContent.customer_name" class="form-control input-lg" placeholder="Customer Name">
+                                 <label class="myReservationLabel">Pax Name<i style="color: red;">*</i></label>
+                                 <input type="text" ng-model="newTokenContent.customer_name" class="form-control input-lg" placeholder="Pax Name">
                               </div>
                               <div class="col-sm-3">
                                  <label class="myReservationLabel">Mobile Number<i style="color: red;">*</i></label>
@@ -295,13 +295,17 @@
 
                            <h3 class="smallHeading" style="color: #c7d34d">Other Details</h3>
                            <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Address</label>
-                                 <textarea ng-model="newTokenContent.customer_address" class="form-control input-lg" placeholder="Customer Address"></textarea>
+                              <div class="col-sm-5">
+                                 <label class="myReservationLabel">Address</label>
+                                 <textarea ng-model="newTokenContent.customer_address" class="form-control input-lg" placeholder="Address"></textarea>
                               </div>
-                              <div class="col-sm-6">
+                              <div class="col-sm-5">
                                  <label class="myReservationLabel">Remarks</label>
                                  <textarea ng-model="newTokenContent.remarks" class="form-control input-lg" placeholder="Any Remarks"></textarea>
+                              </div>
+                              <div class="col-sm-2">
+                                 <label class="myReservationLabel">Amount</label>
+                                 <input type="text" ng-model="newTokenContent.amount" class="form-control input-lg" placeholder="Total Amount">
                               </div>
                               <p ng-show="newTokenError != ''" style="margin: 20px 0px 0px 15px; color: #e74c3c">{{newTokenError}}</p>    
                            </div>
@@ -328,7 +332,7 @@
                            <h3 class="smallHeading">Customer Details</h3>
                            <div class="row">
                               <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Name</label>
+                                 <label class="myReservationLabel">Pax Name</label>
                                  <input type="text" ng-model="editTokenContent.customer_name" class="form-control input-lg" placeholder="" disabled>
                               </div>
                               <div class="col-sm-3">
@@ -409,19 +413,24 @@
 
                            <h3 class="smallHeading" style="color: #c7d34d">Other Details</h3>
                            <div class="row" style="margin-top: 15px;">
-                              <div class="col-sm-6">
-                                 <label class="myReservationLabel">Customer Address</label>
+                              <div class="col-sm-5">
+                                 <label class="myReservationLabel">Address</label>
                                  <textarea ng-model="editTokenContent.customer_address" class="form-control input-lg" placeholder="" disabled></textarea>
                               </div>
-                              <div class="col-sm-6">
+                              <div class="col-sm-5">
                                  <label class="myReservationLabel">Remarks</label>
-                                 <textarea ng-model="editTokenContent.remarks" class="form-control input-lg" placeholder="" disabled></textarea>
+                                 <textarea ng-model="editTokenContent.remarks" class="form-control input-lg"></textarea>
                               </div>  
+                              <div class="col-sm-2">
+                                 <label class="myReservationLabel">Amount</label>
+                                 <input type="text" ng-model="editTokenContent.amount" class="form-control input-lg" placeholder="" disabled>
+                              </div>
                            </div>
                                 
                            
                         </div>                                                                                       
-                        <div class="modal-footer">                      
+                        <div class="modal-footer">    
+                           <button type="button" style="float: left" class="btn btn-primary" data-dismiss="modal" ng-click="updateRemarks(editTokenContent)" ng-if="editRemarksOriginal != editTokenContent.remarks">Update</button>                  
                            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
                         </div>
                      </div><!-- /.modal-content -->

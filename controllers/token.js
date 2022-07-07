@@ -311,7 +311,9 @@ angular.module('TokenApp', ['ngCookies'])
 
     //Edit Token
     $scope.editTokenContent = {};
+    $scope.editRemarksOriginal = "";
     $scope.editToken = function(content){
+      $scope.editRemarksOriginal = content.remarks;
       $scope.editTokenContent = content;
       $('#tokenEditModal').modal('show');
      }
@@ -344,6 +346,34 @@ angular.module('TokenApp', ['ngCookies'])
     return $scope.isGenerateTokenPressed ? "Generating Token..." : "Generate Token";
   }
 
+
+
+  $scope.updateRemarks = function(editContent) {
+    var data = {
+      "id" : editContent.id,
+      "remarks" : editContent.remarks,
+      "token" : $cookies.get("akbarTokenManagementAppAdminToken")
+    }
+
+    $http({
+        method  : 'POST',
+        url     : 'https://www.accelerateengine.app/client-apis/akbar/updatetokenremarks.php',
+        data    : data,
+        headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+     })
+     .then(function(response) {
+      $('#tokenEditModal').modal('hide');
+      if(response.data.status){    
+        $scope.initTokens();
+      }
+      else{
+        alert(response.data.error);
+      }
+
+     });  
+  }
+
+
       
   $scope.saveNewToken = function(){
 
@@ -370,6 +400,8 @@ angular.module('TokenApp', ['ngCookies'])
       $scope.newTokenError = "Flight departure / arrival not added";
     } else if($scope.newTokenContent.flight_status == ""){
       $scope.newTokenError = "Flight status not added";
+    } else if($scope.newTokenContent.amount == ""){
+      $scope.newTokenError = "Amount not added";
     }
     else{
           $scope.newTokenError = "";
