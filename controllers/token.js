@@ -386,7 +386,7 @@ angular.module('TokenApp', ['ngCookies'])
     if($scope.newTokenContent.customer_name == "" || !(/^[a-zA-Z ]+$/.test($scope.newTokenContent.customer_name))){
       $scope.newTokenError = "Please enter valid Customer Name";
     }
-    else if($scope.newTokenContent.customer_mobile == "" || !(/^[789]\d{9}$/.test($scope.newTokenContent.customer_mobile))){
+    else if($scope.newTokenContent.customer_mobile == "" || !(/^[6789]\d{9}$/.test($scope.newTokenContent.customer_mobile))){
       $scope.newTokenError = "Please enter valid Mobile Number";
     } else if($scope.newTokenContent.customer_dob == ""){
       $scope.newTokenError = "Date of Birth not added";
