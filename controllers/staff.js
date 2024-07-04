@@ -31,7 +31,7 @@ angular.module('StaffApp', ['ngCookies'])
 
           $http({
             method  : 'POST',
-            url     : 'https://www.accelerateengine.app/client-apis/akbar/fetchagents.php',
+            url     : 'http://www.akbarmanjeri.in/akbar-apis/fetchagents.php',
             data    : data,
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })
@@ -65,7 +65,7 @@ angular.module('StaffApp', ['ngCookies'])
           $scope.errorflag = false;
           $http({
             method  : 'POST',
-            url     : 'https://www.accelerateengine.app/client-apis/akbar/addagent.php',
+            url     : 'http://www.akbarmanjeri.in/akbar-apis/addagent.php',
             data    : data,
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })
@@ -99,7 +99,7 @@ angular.module('StaffApp', ['ngCookies'])
         data.code = code;
         $http({
           method  : 'POST',
-          url     : 'https://www.accelerateengine.app/client-apis/akbar/removeagent.php',
+          url     : 'http://www.akbarmanjeri.in/akbar-apis/removeagent.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
