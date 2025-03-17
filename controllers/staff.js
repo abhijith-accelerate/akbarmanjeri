@@ -31,7 +31,7 @@ angular.module('StaffApp', ['ngCookies'])
 
           $http({
             method  : 'POST',
-            url     : 'https:/crisprtech.app/akbar-apis/fetchagents.php',
+            url     : 'https://crisprtech.app/akbar-apis/fetchagents.php',
             data    : data,
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })
@@ -65,7 +65,7 @@ angular.module('StaffApp', ['ngCookies'])
           $scope.errorflag = false;
           $http({
             method  : 'POST',
-            url     : 'https:/crisprtech.app/akbar-apis/addagent.php',
+            url     : 'https://crisprtech.app/akbar-apis/addagent.php',
             data    : data,
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })
@@ -99,7 +99,7 @@ angular.module('StaffApp', ['ngCookies'])
         data.code = code;
         $http({
           method  : 'POST',
-          url     : 'https:/crisprtech.app/akbar-apis/removeagent.php',
+          url     : 'https://crisprtech.app/akbar-apis/removeagent.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
