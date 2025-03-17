@@ -75,7 +75,7 @@ angular.module('TokenApp', ['ngCookies'])
             $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
             $http({
               method  : 'POST',
-              url     : 'https:/crisprtech.app/akbar-apis/filtertokens.php',
+              url     : 'https://crisprtech.app/akbar-apis/filtertokens.php',
               data    : data,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}
              })
@@ -188,7 +188,7 @@ angular.module('TokenApp', ['ngCookies'])
         $('#vegaPanelBodyLoader').show(); $("body").css("cursor", "progress");
         $http({
           method  : 'POST',
-          url     : 'https:/crisprtech.app/akbar-apis/filtertokens.php',
+          url     : 'https://crisprtech.app/akbar-apis/filtertokens.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
@@ -224,7 +224,7 @@ angular.module('TokenApp', ['ngCookies'])
 
         $http({
           method  : 'POST',
-          url     : 'https:/crisprtech.app/akbar-apis/filtertokens.php',
+          url     : 'https://crisprtech.app/akbar-apis/filtertokens.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
@@ -292,7 +292,7 @@ angular.module('TokenApp', ['ngCookies'])
         data.id = code;
         $http({
           method  : 'POST',
-          url     : 'https:/crisprtech.app/akbar-apis/canceltoken.php',
+          url     : 'https://crisprtech.app/akbar-apis/canceltoken.php',
           data    : data,
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
@@ -322,7 +322,7 @@ angular.module('TokenApp', ['ngCookies'])
 
      //Print Token
      $scope.printToken = function(id) {
-       window.open("https:/crisprtech.app/akbar-apis/tokenpdf.php?id=" + id, "_blank");
+       window.open("https://crisprtech.app/akbar-apis/tokenpdf.php?id=" + id, "_blank");
      }
 
 
@@ -357,7 +357,7 @@ angular.module('TokenApp', ['ngCookies'])
 
     $http({
         method  : 'POST',
-        url     : 'https:/crisprtech.app/akbar-apis/updatetokenremarks.php',
+        url     : 'https://crisprtech.app/akbar-apis/updatetokenremarks.php',
         data    : data,
         headers : {'Content-Type': 'application/x-www-form-urlencoded'}
      })
@@ -410,7 +410,7 @@ angular.module('TokenApp', ['ngCookies'])
           data.token = $cookies.get("akbarTokenManagementAppAdminToken");
           $http({
               method  : 'POST',
-              url     : 'https:/crisprtech.app/akbar-apis/newtoken.php',
+              url     : 'https://crisprtech.app/akbar-apis/newtoken.php',
               data    : data,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}
            })
