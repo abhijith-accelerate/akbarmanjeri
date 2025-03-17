@@ -40,7 +40,7 @@ angular.module('SettingsApp', ['ngCookies'])
 
       $http({
         method  : 'POST',
-        url     : 'http://www.akbarmanjeri.in/akbar-apis/fetchadmininfo.php',
+        url     : 'https:/crisprtech.app/akbar-apis/fetchadmininfo.php',
         data    : data,
         headers : {'Content-Type': 'application/x-www-form-urlencoded'}
        })
@@ -90,7 +90,7 @@ angular.module('SettingsApp', ['ngCookies'])
       		
      		$http({
 	        method  : 'POST',
-	        url     : 'http://www.akbarmanjeri.in/akbar-apis/updateadmin.php',
+	        url     : 'https:/crisprtech.app/akbar-apis/updateadmin.php',
 	        data    : mydata,
 	        headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 	       })
